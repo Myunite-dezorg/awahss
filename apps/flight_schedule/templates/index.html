@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content  %}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Home</li>
+    </ol>
+</nav>
+
+{% for i in ftl %}
+    { i.iata }
+    {% endfor %}
+
+  
+{% endblock content  %} 

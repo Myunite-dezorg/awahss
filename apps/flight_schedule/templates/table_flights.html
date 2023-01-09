@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load render_table from django_tables2 %}
+
+
+{% block content %}
+
+<!doctype html>
+<html>
+    <head>
+        <title>List of flights</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    </head>
+
+   
+  
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item active" aria-current="page">Flights</li>
+          </ol>
+    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          {% render_table table1 %}
+        </div>
+      </div>
+
+    </div>
+
+</html>
+
+{% endblock content %}
+
+
+
