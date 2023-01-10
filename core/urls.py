@@ -50,7 +50,7 @@ urlpatterns = [
     path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True))),
     path('tinymce/', include('tinymce.urls')),
     path('accounts/', include("apps.users.urls")),
-    path('', homepage),
+    path('', homepage, name="index"),
 ] 
 if settings.DEBUG:
         urlpatterns += static(settings.MEDIA_URL,

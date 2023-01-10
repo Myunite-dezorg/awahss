@@ -259,6 +259,10 @@ CORS_ALLOWED_ORIGINS = [
 
 CORS_EXPOSE_HEADERS = ['Content-Type', 'X-CSRFToken']
 
+CSRF_TRUSTED_ORIGINS = [
+    "http://andrewkharzin-psychic-fortnight-pwrrgjrj64c6pj6-8000.preview.app.github.dev",
+    "https://andrewkharzin-psychic-fortnight-pwrrgjrj64c6pj6-8000.preview.app.github.dev",
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
@@ -273,14 +277,14 @@ USE_TZ = True
 
 
 
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": [(env("REDIS_HOST"), env.int("REDIS_PORT"))],
-        },
-    },
-}
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels_redis.core.RedisChannelLayer",
+#         "CONFIG": {
+#             "hosts": [(env("REDIS_HOST"), env.int("REDIS_PORT"))],
+#         },
+#     },
+# }
 
 
 # Static files (CSS, JavaScript, Images)

@@ -5,7 +5,7 @@ from .models import User
 from apps.profiles.models import Profile
 
 # class UserLoginForm(forms.ModelForm):
-    
+
 #     email = forms.EmailField(widget=forms.TextInput(
 #         attrs={
 #             'type':'email',
@@ -20,14 +20,13 @@ from apps.profiles.models import Profile
 #             'placeholder':'Password'
 #         }
 #     ))
-   
-   
+
 
 #     class Meta:
 #         model = CustomUser
 #         fields = ['email', 'password', ]
 #         unlabelled_fields = ['email', 'password', ]
-    
+
 
 #     def __init__(self, *args, **kwargs):
 #         super(UserLoginForm, self).__init__(*args, **kwargs)
@@ -38,27 +37,25 @@ from apps.profiles.models import Profile
 
 
 class UserLoginForm(forms.Form):
-    
 
     email = forms.EmailField(widget=forms.EmailInput(
         attrs={
             'type': 'email',
-            'class': 'form-control', 
-            'placeholder': 'User Email'
-            }))
+            'class': 'form-control form-control-lg form-control-solid',
+            'placeholder': 'Email'
+        }))
 
     password = forms.CharField(widget=forms.PasswordInput(
         attrs={
             'type': 'password',
-            'class': 'form-control', 
+            'class': 'form-control form-control-lg form-control-solid',
             'placeholder': 'Password'
-            }))
+        }))
 
     class Meta:
-        # model = CustomUser
+        model = User
         # fields = ['email', 'password', ]
         unlabelled_fields = ['email', 'password', ]
-
 
     def __init__(self, *args, **kwargs):
         super(UserLoginForm, self).__init__(*args, **kwargs)
@@ -67,8 +64,10 @@ class UserLoginForm(forms.Form):
         for field in UserLoginForm.Meta.unlabelled_fields:
             self.fields[field].label = False
 
+
 class CustomUserCreationForm(UserCreationForm):
-    email = forms.EmailField(help_text='A valid email address, please.', required=True)
+    email = forms.EmailField(
+        help_text='A valid email address, please.', required=True)
 
     class Meta:
         model = User
@@ -82,7 +81,6 @@ class CustomUserCreationForm(UserCreationForm):
         return user
 
 
-
 class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
@@ -90,17 +88,16 @@ class CustomUserChangeForm(UserChangeForm):
         fields = ('email',)
 
 
-
 class UserUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ['first_name', 
-                  'second_name', 
-                  'last_name', 
-                  'position', 
-                  'phone', 
-                  'shift_work', 
+        fields = ['first_name',
+                  'second_name',
+                  'last_name',
+                  'position',
+                  'phone',
+                  'shift_work',
                   'birthday',
                   'avatar',
-        ]
+                  ]
