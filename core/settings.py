@@ -54,6 +54,8 @@ APPLICATION_APPS = [
     'apps.organizations',
     # 'apps.stuffs',
     "apps.notes",
+    "apps.wrhs",
+    'apps.uposts',
 ]
 
 SYSTEM_APPS = [
