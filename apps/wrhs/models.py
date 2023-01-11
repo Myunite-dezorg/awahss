@@ -7,6 +7,7 @@ from mptt.models import MPTTModel, TreeForeignKey
 
 class DCategory(MPTTModel):
     category_name = models.CharField(_("Category name"), max_length=50)
+    description = models.TextField(null=True, blank=True)
     parent = TreeForeignKey('self', verbose_name="Subdivision", on_delete=models.CASCADE, null=True, blank=True, related_name='children')
     slug = models.SlugField()
 
@@ -39,6 +40,7 @@ class DGRClass(DgrBase):
     imp_code1 = models.CharField(_("IMP Code"), max_length=3)
     imp_code2 = models.CharField(_("IMP Code2"), max_length=3, null=True, blank=True)
     imp_code3 = models.CharField(_("IMP Code3"), max_length=3, null=True, blank=True)
+    cao = models.BooleanField(_("CAO"),  default=False)
     dgr_label = models.ImageField(_("Label"), upload_to="wrh/dgr/labels/", null=True)
     remarks = models.TextField(null=True)
 
@@ -48,6 +50,6 @@ class DGRClass(DgrBase):
 
     @property
     def label_preview(self):
-        if self.brand_logo:
+        if self.dgr_label:
             return mark_safe('<img src="{}" width="80" />'.format(self.dgr_label.url))
         return ""

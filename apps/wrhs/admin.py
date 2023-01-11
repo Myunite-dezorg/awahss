@@ -4,8 +4,17 @@ from import_export.admin import ImportExportModelAdmin
 from mptt.admin import MPTTModelAdmin
 
 
-admin.site.register(DCategory , MPTTModelAdmin)
+class CategoryAdmin(MPTTModelAdmin):
+    list_display = [
+        "category_name",
+        "description",
+        "parent",
+    
 
+    ]
+
+
+admin.site.register(DCategory, MPTTModelAdmin)
 
 @admin.register(DGRClass)
 class DClassAdmin(ImportExportModelAdmin):   
@@ -16,6 +25,7 @@ class DClassAdmin(ImportExportModelAdmin):
         'dgr_class',
         'name',
         'imp_code1',
+        "cao",
         'imp_code2',
         'imp_code3',
         'label_preview',
