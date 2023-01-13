@@ -37,6 +37,11 @@
       rel="stylesheet"
       type="text/css"
     />
+    <link
+      href="{% static 'assets/css/custom.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
     <!--end::Global Stylesheets Bundle-->
   </head>
   <!--end::Head-->
@@ -134,91 +139,8 @@
                     data-kt-swapper-mode="prepend"
                     data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav_wrapper'}"
                   >
-                    <!--begin::Menu-->
-                    <div
-                      class="menu menu-column flex-nowrap menu-rounded menu-lg-row menu-title-gray-500 menu-state-title-primary nav nav-flush fs-5 fw-bold"
-                      id="kt_landing_menu"
-                    >
-                      <!--begin::Menu item-->
-                      <div class="menu-item">
-                        <!--begin::Menu link-->
-                        <a
-                          class="menu-link nav-link active py-3 px-4 px-xxl-6"
-                          href="#kt_body"
-                          data-kt-scroll-toggle="true"
-                          data-kt-drawer-dismiss="true"
-                          >Home</a
-                        >
-                        <!--end::Menu link-->
-                      </div>
-                      <!--end::Menu item-->
-                      <!--begin::Menu item-->
-                      <div class="menu-item">
-                        <!--begin::Menu link-->
-                        <a
-                          class="menu-link nav-link py-3 px-4 px-xxl-6"
-                          href="#how-it-works"
-                          data-kt-scroll-toggle="true"
-                          data-kt-drawer-dismiss="true"
-                          >How it Works</a
-                        >
-                        <!--end::Menu link-->
-                      </div>
-                      <!--end::Menu item-->
-                      <!--begin::Menu item-->
-                      <div class="menu-item">
-                        <!--begin::Menu link-->
-                        <a
-                          class="menu-link nav-link py-3 px-4 px-xxl-6"
-                          href="#achievements"
-                          data-kt-scroll-toggle="true"
-                          data-kt-drawer-dismiss="true"
-                          >Achievements</a
-                        >
-                        <!--end::Menu link-->
-                      </div>
-                      <!--end::Menu item-->
-                      <!--begin::Menu item-->
-                      <div class="menu-item">
-                        <!--begin::Menu link-->
-                        <a
-                          class="menu-link nav-link py-3 px-4 px-xxl-6"
-                          href="#team"
-                          data-kt-scroll-toggle="true"
-                          data-kt-drawer-dismiss="true"
-                          >Team</a
-                        >
-                        <!--end::Menu link-->
-                      </div>
-                      <!--end::Menu item-->
-                      <!--begin::Menu item-->
-                      <div class="menu-item">
-                        <!--begin::Menu link-->
-                        <a
-                          class="menu-link nav-link py-3 px-4 px-xxl-6"
-                          href="#portfolio"
-                          data-kt-scroll-toggle="true"
-                          data-kt-drawer-dismiss="true"
-                          >Portfolio</a
-                        >
-                        <!--end::Menu link-->
-                      </div>
-                      <!--end::Menu item-->
-                      <!--begin::Menu item-->
-                      <div class="menu-item">
-                        <!--begin::Menu link-->
-                        <a
-                          class="menu-link nav-link py-3 px-4 px-xxl-6"
-                          href="#pricing"
-                          data-kt-scroll-toggle="true"
-                          data-kt-drawer-dismiss="true"
-                          >Pricing</a
-                        >
-                        <!--end::Menu link-->
-                      </div>
-                      <!--end::Menu item-->
-                    </div>
-                    <!--end::Menu-->
+                    {% include 'parts/navbar.html' %}
+                  
                   </div>
                 </div>
                 <!--end::Menu wrapper-->
@@ -249,145 +171,148 @@
           </div>
           <!--end::Header-->
           <!--begin::Landing hero-->
+          {% block content %}
+          
+         
           <div
             class="d-flex flex-column flex-center w-100 min-h-350px min-h-lg-800px px-9"
-          >
-            <!--begin::Heading-->
+            >
+          <!--begin::Heading-->
             <div class="text-center mb-5 mb-lg-10 py-10 py-lg-20">
               <!--begin::Title-->
               <h1 class="text-white lh-base fw-bolder fs-2x fs-lg-3x mb-15">
                 Best avialogic practice <br />with
                 <span
-                  style="
-                    background: linear-gradient(
-                      to right,
-                      #12ce5d 0%,
-                      #ffd80c 100%
-                    );
-                    -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;
-                  "
+                style="
+                      background: linear-gradient(
+                        to right,
+                        #12ce5d 0%,
+                        #ffd80c 100%
+                      );
+                      -webkit-background-clip: text;
+                      -webkit-text-fill-color: transparent;
+                    "
+                  >
+                    <span id="kt_landing_hero_text">In Use with FLISS</span>
+                  </span>
+                </h1>
+                <!--end::Title-->
+                <!--begin::Action-->
+              
+                <!--end::Action-->
+              </div>
+              <!--end::Heading-->
+              <!--begin::Clients-->
+              <div class="d-flex flex-center flex-wrap position-relative px-5">
+                <!--begin::Client-->
+                <div
+                  class="d-flex flex-center m-3 m-md-6"
+                  data-bs-toggle="tooltip"
+                  title="Fujifilm"
                 >
-                  <span id="kt_landing_hero_text">In Use with FLISS</span>
-                </span>
-              </h1>
-              <!--end::Title-->
-              <!--begin::Action-->
-              <a href="../../demo1/dist/index.html" class="btn btn-primary"
-                >Try Metronic</a
-              >
-              <!--end::Action-->
+                  <img
+                    src="{% static 'assets/media/svg/brand-logos/fujifilm.svg' %}"
+                    class="mh-30px mh-lg-40px"
+                    alt=""
+                  />
+                </div>
+                <!--end::Client-->
+                <!--begin::Client-->
+                <div
+                  class="d-flex flex-center m-3 m-md-6"
+                  data-bs-toggle="tooltip"
+                  title="Vodafone"
+                >
+                  <img
+                    src="{% static 'assets/media/svg/brand-logos/vodafone.svg' %}"
+                    class="mh-30px mh-lg-40px"
+                    alt=""
+                  />
+                </div>
+                <!--end::Client-->
+                <!--begin::Client-->
+                <div
+                  class="d-flex flex-center m-3 m-md-6"
+                  data-bs-toggle="tooltip"
+                  title="KPMG International"
+                >
+                  <img
+                    src="{% static 'assets/media/svg/brand-logos/kpmg.svg' %}"
+                    class="mh-30px mh-lg-40px"
+                    alt=""
+                  />
+                </div>
+                <!--end::Client-->
+                <!--begin::Client-->
+                <div
+                  class="d-flex flex-center m-3 m-md-6"
+                  data-bs-toggle="tooltip"
+                  title="Nasa"
+                >
+                  <img
+                    src="{% static 'assets/media/svg/brand-logos/nasa.svg' %}"
+                    class="mh-30px mh-lg-40px"
+                    alt=""
+                  />
+                </div>
+                <!--end::Client-->
+                <!--begin::Client-->
+                <div
+                  class="d-flex flex-center m-3 m-md-6"
+                  data-bs-toggle="tooltip"
+                  title="Aspnetzero"
+                >
+                  <img
+                    src="{% static 'assets/media/svg/brand-logos/aspnetzero.svg' %}"
+                    class="mh-30px mh-lg-40px"
+                    alt=""
+                  />
+                </div>
+                <!--end::Client-->
+                <!--begin::Client-->
+                <div
+                  class="d-flex flex-center m-3 m-md-6"
+                  data-bs-toggle="tooltip"
+                  title="AON - Empower Results"
+                >
+                  <img
+                    src="{% static 'assets/media/svg/brand-logos/aon.svg' %}"
+                    class="mh-30px mh-lg-40px"
+                    alt=""
+                  />
+                </div>
+                <!--end::Client-->
+                <!--begin::Client-->
+                <div
+                  class="d-flex flex-center m-3 m-md-6"
+                  data-bs-toggle="tooltip"
+                  title="Hewlett-Packard"
+                >
+                  <img
+                    src="{% static 'assets/media/svg/brand-logos/hp-3.svg' %}"
+                    class="mh-30px mh-lg-40px"
+                    alt=""
+                  />
+                </div>
+                <!--end::Client-->
+                <!--begin::Client-->
+                <div
+                  class="d-flex flex-center m-3 m-md-6"
+                  data-bs-toggle="tooltip"
+                  title="Truman"
+                >
+                  <img
+                    src="{% static 'assets/media/svg/brand-logos/truman.svg' %}"
+                    class="mh-30px mh-lg-40px"
+                    alt=""
+                  />
+                </div>
+                <!--end::Client-->
+              </div>
+              <!--end::Clients-->
             </div>
-            <!--end::Heading-->
-            <!--begin::Clients-->
-            <div class="d-flex flex-center flex-wrap position-relative px-5">
-              <!--begin::Client-->
-              <div
-                class="d-flex flex-center m-3 m-md-6"
-                data-bs-toggle="tooltip"
-                title="Fujifilm"
-              >
-                <img
-                  src="{% static 'assets/media/svg/brand-logos/fujifilm.svg' %}"
-                  class="mh-30px mh-lg-40px"
-                  alt=""
-                />
-              </div>
-              <!--end::Client-->
-              <!--begin::Client-->
-              <div
-                class="d-flex flex-center m-3 m-md-6"
-                data-bs-toggle="tooltip"
-                title="Vodafone"
-              >
-                <img
-                  src="{% static 'assets/media/svg/brand-logos/vodafone.svg' %}"
-                  class="mh-30px mh-lg-40px"
-                  alt=""
-                />
-              </div>
-              <!--end::Client-->
-              <!--begin::Client-->
-              <div
-                class="d-flex flex-center m-3 m-md-6"
-                data-bs-toggle="tooltip"
-                title="KPMG International"
-              >
-                <img
-                  src="{% static 'assets/media/svg/brand-logos/kpmg.svg' %}"
-                  class="mh-30px mh-lg-40px"
-                  alt=""
-                />
-              </div>
-              <!--end::Client-->
-              <!--begin::Client-->
-              <div
-                class="d-flex flex-center m-3 m-md-6"
-                data-bs-toggle="tooltip"
-                title="Nasa"
-              >
-                <img
-                  src="{% static 'assets/media/svg/brand-logos/nasa.svg' %}"
-                  class="mh-30px mh-lg-40px"
-                  alt=""
-                />
-              </div>
-              <!--end::Client-->
-              <!--begin::Client-->
-              <div
-                class="d-flex flex-center m-3 m-md-6"
-                data-bs-toggle="tooltip"
-                title="Aspnetzero"
-              >
-                <img
-                  src="{% static 'assets/media/svg/brand-logos/aspnetzero.svg' %}"
-                  class="mh-30px mh-lg-40px"
-                  alt=""
-                />
-              </div>
-              <!--end::Client-->
-              <!--begin::Client-->
-              <div
-                class="d-flex flex-center m-3 m-md-6"
-                data-bs-toggle="tooltip"
-                title="AON - Empower Results"
-              >
-                <img
-                  src="{% static 'assets/media/svg/brand-logos/aon.svg' %}"
-                  class="mh-30px mh-lg-40px"
-                  alt=""
-                />
-              </div>
-              <!--end::Client-->
-              <!--begin::Client-->
-              <div
-                class="d-flex flex-center m-3 m-md-6"
-                data-bs-toggle="tooltip"
-                title="Hewlett-Packard"
-              >
-                <img
-                  src="{% static 'assets/media/svg/brand-logos/hp-3.svg' %}"
-                  class="mh-30px mh-lg-40px"
-                  alt=""
-                />
-              </div>
-              <!--end::Client-->
-              <!--begin::Client-->
-              <div
-                class="d-flex flex-center m-3 m-md-6"
-                data-bs-toggle="tooltip"
-                title="Truman"
-              >
-                <img
-                  src="{% static 'assets/media/svg/brand-logos/truman.svg' %}"
-                  class="mh-30px mh-lg-40px"
-                  alt=""
-                />
-              </div>
-              <!--end::Client-->
-            </div>
-            <!--end::Clients-->
           </div>
+          {% endblock content %}
           <!--end::Landing hero-->
         </div>
         <!--end::Wrapper-->
@@ -443,6 +368,15 @@
     <!--begin::Page Custom Javascript(used by this page)-->
     <script src="{% static 'assets/js/custom/landing.js' %}"></script>
     <script src="{% static 'assets/js/custom/pages/pricing/general.js' %}"></script>
+		<!--end::Global Javascript Bundle-->
+		<!--begin::Page Vendors Javascript(used by this page)-->
+		<script src="{% static 'assets/plugins/custom/fullcalendar/fullcalendar.bundle.js' %}"></script>
+		<script src="{% static 'assets/plugins/custom/datatables/datatables.bundle.js' %}"></script>
+		<!--end::Page Vendors Javascript-->
+		<!--begin::Page Custom Javascript(used by this page)-->
+		<script src="{% static 'assets/js/widgets.bundle.js' %}"></script>
+		<script src="{% static 'assets/js/custom/widgets.js' %}"></script>
+
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 		<script>
 		    

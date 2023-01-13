@@ -10,6 +10,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.decorators.csrf import csrf_exempt
 from graphene_django.views import GraphQLView
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 
 from .views import homepage
@@ -46,11 +47,17 @@ urlpatterns = [
         name='schema-json'),
     path('admin/', admin.site.urls),
     path('api/v1/', include("api.urls")), 
+    path('api/v1/schema/', SpectacularAPIView.as_view(), name='schema'),
+    # Optional UI:
+    path('api/v1/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/v1/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
     path('flights/', include("apps.flight_schedule.urls", namespace='scheduler')),
     path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True))),
     path('tinymce/', include('tinymce.urls')),
     path('accounts/', include("apps.users.urls")),
     path('', homepage, name="index"),
+
+    path('', include('apps.publishers.Articles.urls'))
 ] 
 if settings.DEBUG:
         urlpatterns += static(settings.MEDIA_URL,

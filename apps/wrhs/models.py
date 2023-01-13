@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from django.utils.text import slugify
 from django.utils.html import mark_safe
 from mptt.models import MPTTModel, TreeForeignKey
+from apps.wrhs.base_directory.models import ImpCode
 
 class DCategory(MPTTModel):
     category_name = models.CharField(_("Category name"), max_length=50)
@@ -37,9 +38,12 @@ class DCategory(MPTTModel):
 class DGRClass(DgrBase):
     category = models.ForeignKey(DCategory, related_name="dgr_category", on_delete=models.CASCADE)
     name = models.CharField(_("Name"), max_length=50)
-    imp_code1 = models.CharField(_("IMP Code"), max_length=3)
-    imp_code2 = models.CharField(_("IMP Code2"), max_length=3, null=True, blank=True)
-    imp_code3 = models.CharField(_("IMP Code3"), max_length=3, null=True, blank=True)
+    imp_code = models.CharField(_("Imp code1"), default='...', max_length=3)
+    imp_code2 = models.CharField(_("Imp code2"), default='', max_length=3)
+    imp_code3 = models.CharField(_("Imp code3"), default='', max_length=3)
+    # imp_code2 = models.ForeignKey(ImpCode, verbose_name=_("drg_imp_code2"), on_delete=models.CASCADE)
+    # imp_code3 = models.ForeignKey(ImpCode, verbose_name=_("drg_imp_code3"), on_delete=models.CASCADE)
+   
     cao = models.BooleanField(_("CAO"),  default=False)
     dgr_label = models.ImageField(_("Label"), upload_to="wrh/dgr/labels/", null=True)
     remarks = models.TextField(null=True)

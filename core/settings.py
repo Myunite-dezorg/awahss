@@ -56,6 +56,8 @@ APPLICATION_APPS = [
     "apps.notes",
     "apps.wrhs",
     'apps.uposts',
+    'apps.wrhs.base_directory',
+    'apps.publishers.Articles',
 ]
 
 SYSTEM_APPS = [
@@ -72,6 +74,8 @@ THIRDPARTY_APPS = [
     'djoser',
     'rest_framework',
     'rest_framework_simplejwt',
+    'drf_spectacular',
+    'drf_spectacular_sidecar',
     'mptt',
     'tinymce',
     'phone_field',
@@ -83,6 +87,7 @@ THIRDPARTY_APPS = [
     'author',
     'channels',
     'django_bookmark_base',
+    "taggit", 
 
 ]
 
@@ -188,7 +193,19 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10,
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Awahss API',
+    'DESCRIPTION': 'API fro handling services application',
+    'VERSION': '1.0.1',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'SWAGGER_UI_DIST': 'SIDECAR',  # shorthand to use the sidecar instead
+    'SWAGGER_UI_FAVICON_HREF': 'SIDECAR',
+    'REDOC_DIST': 'SIDECAR',
+    # OTHER SETTINGS
 }
 
 # Password validation

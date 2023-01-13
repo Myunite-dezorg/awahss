@@ -1,0 +1,218 @@
+{% extends "homepage.html" %}
+latest posts
+  
+					<!--end::Header-->
+					<!--begin::Content-->
+{% block content %}
+<div class="post d-flex flex-column-fluid" id="kt_post">
+    <!--begin::Container-->
+    <div id="kt_content_container" class="container-xxl">
+        <!--begin::Home card-->
+        <div class="card">
+            <!--begin::Body-->
+            <div class="card-body p-lg-20">
+                <!--begin::Section-->
+                
+                
+                    
+                
+                    
+                <div class="mb-17">
+                    <!--begin::Title-->
+                    <h3 class="text-dark mb-7">Latest Articles</h3>
+                    <!--end::Title-->
+                    <!--begin::Separator-->
+                    <div class="separator separator-dashed mb-9"></div>
+                    <!--end::Separator-->
+                    <!--begin::Row-->
+                    <div class="row">
+                        <!--begin::Col-->
+                        
+                        {% for article in object_list %}
+                            
+                       
+                            
+                        <div class="col-md-6">
+                            <!--begin::Feature post-->
+                            <div class="h-75 d-flex flex-column justify-content-between pe-lg-6 mb-lg-0 mb-10">
+                               
+                                <!--begin::Body-->
+                                <div class="mb-5">
+                                    <div class="card">
+                                        <a class="d-block overlay" data-fslightbox="lightbox-hot-sales" href="{{ article.get_feature_img }}">
+                                            <!--begin::Image-->
+                                            <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-175px" style="background-image:url({{ article.get_feature_img }})"></div>
+                                            <!--end::Image-->
+                                            <!--begin::Action-->
+                                            <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+                                                <i class="bi bi-eye-fill fs-2x text-white"></i>
+                                            </div>
+                                            <!--end::Action-->
+                                        </a>
+                                        <!--begin::Title-->
+                                        <a href="#" class="fs-2 text-dark fw-bolder text-hover-primary text-dark lh-base mt-40px">{{ article.title }}
+                                        <br />{{ article.subtitle }}</a>
+                                        <!--end::Title-->
+                                        <!--begin::Text-->
+                                    
+                                        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4">{{ article.body}}</div>
+                                        <!--end::Text-->
+                                    </div>
+                                </div>
+                                <!--end::Body-->
+                                <!--begin::Footer-->
+                                <div class="d-flex flex-stack flex-wrap">
+                                    <!--begin::Item-->
+                                    <div class="d-flex align-items-center pe-2">
+                                        <!--begin::Avatar-->
+                                        <div class="symbol symbol-35px symbol-circle me-3">
+                                            <img alt="" src="{{ article.get_owner_pp }}" />
+                                        </div>
+                                        <!--end::Avatar-->
+                                        <!--begin::Text-->
+                                        <div class="fs-5 fw-bolder">
+                                            <a href="../../demo1/dist/pages/user-profile/overview.html" class="text-gray-700 text-hover-primary">by {{ article.author }}</a>
+                                            <span class="text-muted"> on {{ article.publish_date }}</span>
+                                        </div>
+                                        <!--end::Text-->
+                                    </div>
+                                    <!--end::Item-->
+                                    <!--begin::Label-->
+                                    <div class="fs-5 fw-bolder">
+
+                                        <span class="badge badge-light-primary fw-bolder my-2">Articles</span>
+                                    </div>
+                        
+                                    <div class="fs-5 fw-bolder">
+
+                                        {% for tag in article.tags.all %}
+                                         <span class="badge badge-light-primary fw-bolder my-2">{{ tag.name }} </span>
+                                        {% endfor %}
+                                    </div>
+                                    
+                                    <!--end::Label-->
+                                </div>
+                                <!--end::Footer-->
+                            </div>
+                            <!--end::Feature post-->
+                        </div>
+                        {% endfor %}
+                        <!--end::Col-->
+                       
+                    </div>
+                    <!--begin::Row-->
+                </div>
+                
+                <!--end::Section-->
+              
+                <!--begin::latest instagram-->
+                <div class="">
+                    <!--begin::Section-->
+                    <div class="m-0">
+                        <!--begin::Content-->
+                        <div class="d-flex flex-stack">
+                            <!--begin::Title-->
+                            <h3 class="text-dark">Latest Instagram Posts</h3>
+                            <!--end::Title-->
+                            <!--begin::Link-->
+                            <a href="#" class="fs-6 fw-bold link-primary">View Instagram</a>
+                            <!--end::Link-->
+                        </div>
+                        <!--end::Content-->
+                        <!--begin::Separator-->
+                        <div class="separator separator-dashed border-gray-300 mb-9 mt-5"></div>
+                        <!--end::Separator-->
+                    </div>
+                    <!--end::Section-->
+                    <!--begin::Row-->
+                    <div class="row g-10 row-cols-2 row-cols-lg-5">
+                        <!--begin::Col-->
+                        <div class="col">
+                            <!--begin::Overlay-->
+                            <a class="d-block overlay" data-fslightbox="lightbox-hot-sales" href="assets/media/stock/900x600/16.jpg">
+                                <!--begin::Image-->
+                                <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-175px" style="background-image:url('assets/media/stock/900x600/16.jpg')"></div>
+                                <!--end::Image-->
+                                <!--begin::Action-->
+                                <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+                                    <i class="bi bi-eye-fill fs-2x text-white"></i>
+                                </div>
+                                <!--end::Action-->
+                            </a>
+                        </div>
+                        <!--end::Col-->
+                        <!--begin::Col-->
+                        <div class="col">
+                            <!--begin::Overlay-->
+                            <a class="d-block overlay" data-fslightbox="lightbox-hot-sales" href="assets/media/stock/900x600/13.jpg">
+                                <!--begin::Image-->
+                                <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-175px" style="background-image:url('assets/media/stock/900x600/13.jpg')"></div>
+                                <!--end::Image-->
+                                <!--begin::Action-->
+                                <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+                                    <i class="bi bi-eye-fill fs-2x text-white"></i>
+                                </div>
+                                <!--end::Action-->
+                            </a>
+                        </div>
+                        <!--end::Col-->
+                        <!--begin::Col-->
+                        <div class="col">
+                            <!--begin::Overlay-->
+                            <a class="d-block overlay" data-fslightbox="lightbox-hot-sales" href="assets/media/stock/900x600/19.jpg">
+                                <!--begin::Image-->
+                                <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-175px" style="background-image:url('assets/media/stock/900x600/19.jpg')"></div>
+                                <!--end::Image-->
+                                <!--begin::Action-->
+                                <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+                                    <i class="bi bi-eye-fill fs-2x text-white"></i>
+                                </div>
+                                <!--end::Action-->
+                            </a>
+                        </div>
+                        <!--end::Col-->
+                        <!--begin::Col-->
+                        <div class="col">
+                            <!--begin::Overlay-->
+                            <a class="d-block overlay" data-fslightbox="lightbox-hot-sales" href="assets/media/stock/900x600/15.jpg">
+                                <!--begin::Image-->
+                                <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-175px" style="background-image:url('assets/media/stock/900x600/15.jpg')"></div>
+                                <!--end::Image-->
+                                <!--begin::Action-->
+                                <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+                                    <i class="bi bi-eye-fill fs-2x text-white"></i>
+                                </div>
+                                <!--end::Action-->
+                            </a>
+                        </div>
+                        <!--end::Col-->
+                        <!--begin::Col-->
+                        <div class="col">
+                            <!--begin::Overlay-->
+                            <a class="d-block overlay" data-fslightbox="lightbox-hot-sales" href="assets/media/stock/900x600/12.jpg">
+                                <!--begin::Image-->
+                                <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-175px" style="background-image:url('assets/media/stock/900x600/12.jpg')"></div>
+                                <!--end::Image-->
+                                <!--begin::Action-->
+                                <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+                                    <i class="bi bi-eye-fill fs-2x text-white"></i>
+                                </div>
+                                <!--end::Action-->
+                            </a>
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                    <!--begin::Row-->
+                </div>
+                <!--end::latest instagram-->
+            </div>
+            <!--end::Body-->
+        </div>
+        <!--end::Home card-->
+    </div>
+    <!--end::Container-->
+</div>
+{% endblock content %}
+					<!--end::Content-->
+					
+		

@@ -24,10 +24,10 @@ class DClassAdmin(ImportExportModelAdmin):
         'category',
         'dgr_class',
         'name',
-        'imp_code1',
-        "cao",
+        'imp_code',
         'imp_code2',
         'imp_code3',
+        "cao",
         'label_preview',
 
          )
