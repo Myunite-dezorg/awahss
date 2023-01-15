@@ -24,6 +24,8 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display = ('id', 'user',  'full_name', 'phone', 'birthday', 'shift_work', 'thumbnail_preview')
     readonly_fields = ('thumbnail_preview',)
 
+    raw_id_fields = ['user', ]
+
     def thumbnail_preview(self, obj):
         return obj.thumbnail_preview
 

@@ -48,6 +48,8 @@ class TaskAdmin(ImportExportModelAdmin):
     list_editable = [
         'status'
     ]
+
+    raw_id_fields = ['airline', ]
     
     def get_ac(self, obj):
         return obj.register.ac_type

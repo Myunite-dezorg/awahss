@@ -21,7 +21,7 @@ class AilineAdmin(ImportExportModelAdmin):
 
         
     ]
-    search_fields = ['comment_rus','icao']
+    search_fields = ['comment_rus','icao', 'iata',]
     # list_editable = [
     #     'rus_name',
     #     'comment',
