@@ -8,3 +8,9 @@
     z-index: 105;
 
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+    color: #250343;
+}
