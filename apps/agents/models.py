@@ -1,5 +1,6 @@
 from django.db import models
 from apps.profiles.models import Profile
+from apps.organizations.models import Organization
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.translation import gettext as _
@@ -24,13 +25,16 @@ class Agent(models.Model):
     profile = models.OneToOneField(Profile, verbose_name=_(
         "profile_agent"), on_delete=models.CASCADE)
     agent_id = models.CharField(max_length=15, null=True, blank=True)
-    # agent_company = models.CharField(
-    #     _("Agent company"), choices=Company.choices, max_length=50, null=True, default=Company.UNSIGN)
 
     barcode = models.ImageField(upload_to='agents/barcodes/', blank=True)
 
     def __str__(self):
-        return f"{self.agent_id.upper()}"
+        # return f"{self.agent_id.upper()}-{self.profile}"
+        return u"%s" % (self.profile)
+    def get_agent_name(self):
+        return f"{self.profile.first_name}-{self.profile.second_name}"
+    def get_agent_phone(self):
+        return f"{self.profile.phone}"
 
     def save(self, *args, **kwargs):          # overriding save() 
         COD128 = barcode.get_barcode_class('code128')

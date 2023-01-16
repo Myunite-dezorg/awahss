@@ -1,10 +1,12 @@
 from django.db import models
 from apps.users.models import User
+from apps.profiles.models import Profile
 from django.utils.translation import gettext_lazy as _
 from apps.organizations.uuid import BaseUUID
 
 
 class Organization(BaseUUID):
+   
     user = models.OneToOneField(User,  on_delete=models.CASCADE)
     # user = models.OneToOneField(User, on_delete=models.PROTECT)
     organization_name = models.CharField(

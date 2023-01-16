@@ -43,6 +43,7 @@ ALLOWED_HOSTS = ['*']
 APPLICATION_APPS = [
     'apps.users',
     'apps.profiles',
+    'apps.agents',
     'apps.aircraft',
     "apps.flight_schedule",
     "apps.flight_schedule.flight_schedule_api",
@@ -50,14 +51,15 @@ APPLICATION_APPS = [
     "api",
     # "apps.aircraftblog",
     "apps.payload",
-    'apps.agents',
     'apps.organizations',
-    # 'apps.stuffs',
+    'apps.stuffs',
     "apps.notes",
     "apps.wrhs",
     'apps.uposts',
     'apps.wrhs.base_directory',
     'apps.publishers.Articles',
+    'apps.services',
+    'apps.schedules',
 ]
 
 SYSTEM_APPS = [
@@ -88,6 +90,7 @@ THIRDPARTY_APPS = [
     'channels',
     'django_bookmark_base',
     "taggit", 
+    'dynamic_raw_id',
 
 ]
 

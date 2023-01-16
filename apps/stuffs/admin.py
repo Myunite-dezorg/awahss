@@ -31,6 +31,8 @@ class AogAdmin(admin.ModelAdmin):
     #     'is_serviceable'
     # ]
 
+    raw_id_fields = ['agent',]
+
 
 class AcEngineAdmin(admin.ModelAdmin):
     list_display = [

@@ -56,6 +56,7 @@ urlpatterns = [
     path('tinymce/', include('tinymce.urls')),
     path('accounts/', include("apps.users.urls")),
     path('', homepage, name="index"),
+    path('admin/dynamic_raw_id/', include('dynamic_raw_id.urls')),
 
     path('', include('apps.publishers.Articles.urls'))
 ] 
