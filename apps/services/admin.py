@@ -1,57 +1,43 @@
 from django.contrib import admin
-from apps.services.models import AogService, DutyPerson
+from apps.services.models import AogService, DutyPerson, TASK_PRIORITY_FIELDS
 from dynamic_raw_id.admin import DynamicRawIDMixin
 from dynamic_raw_id.filters import DynamicRawIDFilter
+from adminfilters.multiselect import UnionFieldListFilter
+from django_admin_listfilter_dropdown.filters import RelatedDropdownFilter
 
 
+class PersonInline(admin.TabularInline):
+    model = DutyPerson
+    extra = 0
 
-
-# class AogChangeList(ChangeList):
-#     def __init__(self, request, model, list_display,
-#                  list_display_links, list_filter, date_hierarchy,
-#                  search_fields, list_select_related, list_per_page,
-#                  list_max_show_all, list_editable, model_admin):
-#         super(AogChangeList, self).__init__(request, model,
-#                                             list_display, list_display_links, list_filter,
-#                                             date_hierarchy, search_fields, list_select_related,
-#                                             list_per_page, list_max_show_all, list_editable,
-#                                             model_admin)
-
-#         # these need to be defined here, and not in MovieAdmin
-#         self.list_display = ['action_checkbox', 'item', 'service_item']
-#         self.list_display_links = ['item']
-#         self.list_editable = ['service_item']
-
-
-class AogServiceAdmin(DynamicRawIDMixin, admin.ModelAdmin):
+@admin.register(AogService)
+class AogServiceAdmin(admin.ModelAdmin):
 
     list_display = [
+        'number',
+        'request_date',
         'service_name',
-        'service_date',
-        # 'get_changelist',
-        # 'get_changelist_form',
-        'agent',
         'flight',
+        'created_by',
         
 
     ]
-     
-    # autocomplete_fields = ['flight', ] 
-    dynamic_raw_id_fields = ('flight',)
-    # raw_id_fields = ('flight',)
-
+    list_display_links = ('number', 'flight')
+    search_fields = ('id', 'service_name')
     list_filter = (
-        ('flight', DynamicRawIDFilter),
+        # ('agent', RelatedDropdownFilter),
+        # ('partner', RelatedDropdownFilter),
+        ('type', UnionFieldListFilter),
+      
     )
+    ordering = TASK_PRIORITY_FIELDS
+    readonly_fields = ('data_createAt', 'data_updateAt', 'created_by')
 
+    # fieldsets = (               # Edition form
+    #     (None,                   {'fields': ('service_name', ('user', 'partner'), 'deadline',
+    #                                          ('state', 'priority'), ('description', 'resolution'))}),
+    #     (_('More...'), {'fields': (('created_at', 'last_modified'), 'created_by'), 'classes': ('collapse',)}),
+    # )
 
-class DutyPersonAdmin(admin.ModelAdmin):
-    list_display = [
-        'full_name',
-        'position',
-        'contact_phone',
-    ]
-
-
-admin.site.register(AogService, AogServiceAdmin)
-admin.site.register(DutyPerson, DutyPersonAdmin)
+    inlines = [PersonInline]
+  

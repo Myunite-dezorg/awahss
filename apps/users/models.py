@@ -12,9 +12,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
-    is_agent = models.BooleanField(default=False)
-    is_manager = models.BooleanField(default=False)
-    is_accounter = models.BooleanField(default=False)
+    # is_agent = models.BooleanField(default=False)
+    # is_manager = models.BooleanField(default=False)
+    # is_accounter = models.BooleanField(default=False)
     date_joined = models.DateTimeField(default=timezone.now)
 
 
@@ -27,3 +27,27 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+# class Manager(User):
+#     is_manager = models.BooleanField(default=True)
+
+
+#     def __str__(self):
+#         return self.email
+
+class Partner(User):
+    is_agent = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.email
+
+
+
+# class Accounting(User):
+#     is_accounter = models.BooleanField(default=True)
+
+#     def __str__(self):
+#         return self.email
+
+
+

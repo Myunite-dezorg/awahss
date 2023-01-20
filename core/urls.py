@@ -46,6 +46,7 @@ urlpatterns = [
         schema_view.without_ui(cache_timeout=0),
         name='schema-json'),
     path('admin/', admin.site.urls),
+    path("select2/", include("django_select2.urls")),
     path('api/v1/', include("api.urls")), 
     path('api/v1/schema/', SpectacularAPIView.as_view(), name='schema'),
     # Optional UI:

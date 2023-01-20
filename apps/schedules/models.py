@@ -15,11 +15,11 @@ class RegularScheduler(BaseSched):
     tech_rout = models.CharField(_("Tech"), max_length=15)
     flt_number = models.CharField(_("Flight number"), max_length=8)
     airport = models.CharField(_("Airport"), max_length=3)
-    sta = models.TimeField(_("STA"), null=True)
-    pta = models.TimeField(_("PTA"), null=True)
-    ata = models.TimeField(_("ATA"), null=True)
+    sta = models.TimeField(_("STA"), null=True, blank=True)
+    pta = models.TimeField(_("PTA"), null=True, blank=True)
+    ata = models.TimeField(_("ATA"), null=True, blank=True)
 
 
 
-    def __self__(self):
-        return u'%s' % (self.flt_number)
+    def __str__(self):
+        return u"%s" % (self.flt_number)

@@ -9,7 +9,10 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User,  on_delete=models.CASCADE)
+    user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)
+    # manager = models.OneToOneField(Manager, related_name="manager_profile", on_delete=models.CASCADE, null=True)
+    # accounter = models.OneToOneField(Accounting, related_name="accounter_profile", on_delete=models.CASCADE, null=True)
+    # partner = models.OneToOneField(Partner, related_name="partner_profile", on_delete=models.CASCADE, null=True)
     first_name = models.CharField(_("First Name"), max_length=50, null=True, blank=True)
     second_name = models.CharField(_("Second Name"), max_length=50, null=True, blank=True)
     last_name = models.CharField(_("Last Name"), max_length=50, null=True, blank=True)

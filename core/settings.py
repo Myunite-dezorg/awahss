@@ -91,6 +91,7 @@ THIRDPARTY_APPS = [
     'django_bookmark_base',
     "taggit", 
     'dynamic_raw_id',
+    'django_select2',
 
 ]
 

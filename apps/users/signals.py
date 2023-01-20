@@ -1,18 +1,10 @@
 from django.db.models.signals import post_save
-from django.contrib.auth.models import Group
 from apps.profiles.models import Profile
 from apps.agents.models import Agent
-from .models import User
 # from apps.organizations.models import Organization
 from django.dispatch import receiver
 
 
-# --------------------------------------------------------
-# Assign new registered user to default group
-
-
-
-# --------------------------------------------------------
 # Auto add Agent
 @receiver(post_save, sender=Profile)
 def create_profile_agentid(sender, instance, created, **kwargs):
@@ -30,6 +22,3 @@ def create_profile_agentid(sender, instance, created, **kwargs):
 @receiver(post_save, sender=Profile)
 def save_profile_agentid(sender, instance, **kwargs):
     instance.agent.save()
-
-
-       
