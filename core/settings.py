@@ -53,13 +53,14 @@ APPLICATION_APPS = [
     "apps.payload",
     'apps.organizations',
     'apps.stuffs',
-    "apps.notes",
-    "apps.wrhs",
-    'apps.uposts',
-    'apps.wrhs.base_directory',
-    'apps.publishers.Articles',
+    # "apps.notes",
+    # "apps.wrhs",
+    # 'apps.uposts',
+    # 'apps.wrhs.base_directory',
+    # 'apps.publishers.Articles',
     'apps.services',
     'apps.schedules',
+    # 'apps.projects',
 ]
 
 SYSTEM_APPS = [

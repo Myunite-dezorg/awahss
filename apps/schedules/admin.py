@@ -30,8 +30,15 @@ from .models import RegularScheduler
 class ShedAdmin(DynamicRawIDMixin, ImportExportModelAdmin):  
     # resource_class = ScheduleResource 
     model = RegularScheduler
+    # sta = Field(column_name='sta', widget=TimeWidget(format="%H:%M:%S"))
+    # pta = Field(column_name='pta', widget=TimeWidget(format="%H:%M:%S"))
+    # ata = Field(column_name='ata', widget=TimeWidget(format="%H:%M:%S"))
+    # std = Field(column_name='std', widget=TimeWidget(format="%H:%M:%S"))
+    # ptd = Field(column_name='ptd', widget=TimeWidget(format="%H:%M:%S"))
+    # atd = Field(column_name='atd', widget=TimeWidget(format="%H:%M:%S"))
 
-    list_display = ('tech_rout', 'flt_number',  'airport', 'sta', 'pta', 'ata',)
+
+    list_display = ('tech_rout', 'flt_number',  'airport', 'sta', 'pta', 'ata', 'std', 'ptd', 'atd')
     search_fields = ['flt_number','airport']
 
     

@@ -15,7 +15,7 @@ from rest_framework_simplejwt.views import (
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'profiles', ProfileViewSet)
-router.register(r'notes', NoteViewSet)
+# router.register(r'notes', NoteViewSet)
 router.register('ping', PingViewSet, basename="ping")
 
 

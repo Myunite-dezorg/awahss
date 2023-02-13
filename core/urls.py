@@ -59,7 +59,8 @@ urlpatterns = [
     path('', homepage, name="index"),
     path('admin/dynamic_raw_id/', include('dynamic_raw_id.urls')),
 
-    path('', include('apps.publishers.Articles.urls'))
+    # path('', include('apps.publishers.Articles.urls')),
+   
 ] 
 if settings.DEBUG:
         urlpatterns += static(settings.MEDIA_URL,

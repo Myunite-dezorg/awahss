@@ -18,6 +18,9 @@ class RegularScheduler(BaseSched):
     sta = models.TimeField(_("STA"), null=True, blank=True)
     pta = models.TimeField(_("PTA"), null=True, blank=True)
     ata = models.TimeField(_("ATA"), null=True, blank=True)
+    std = models.TimeField(_("STD"), null=True, blank=True)
+    ptd = models.TimeField(_("PTD"), null=True, blank=True)
+    atd = models.TimeField(_("ATD"), null=True, blank=True)
 
 
 

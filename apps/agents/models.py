@@ -46,7 +46,7 @@ class Agent(models.Model):
     @property
     def barcode_preview(self):
         if self.barcode:
-            return mark_safe('<img src="{}" width="60" />'.format(self.barcode.url))
+            return mark_safe('<img src="{}" width="150" />'.format(self.barcode.url))
 
     # @classmethod
     # def get_new(cls):

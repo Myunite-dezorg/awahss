@@ -8,7 +8,7 @@ class AgentAdmin(admin.ModelAdmin):
         'profile',
         'get_agent_name',
         'get_agent_phone',
-        # 'barcode_preview'
+        'barcode_preview'
     
    ]
     search_fields = ['profile__user__email','agent_id',]
