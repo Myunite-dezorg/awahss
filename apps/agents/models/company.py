@@ -2,6 +2,8 @@ from django.db import models
 from apps.profiles.models import Profile
 from django.utils.translation import gettext_lazy as _
 
+from django.conf import settings
+
 
 
 class Company(models.Model):
@@ -10,10 +12,11 @@ class Company(models.Model):
         ordering = ["name"]
         verbose_name = _("Company")
         verbose_name_plural = _("Companies")
+
     profile = models.OneToOneField(Profile, verbose_name=_(
         "profile_company"), on_delete=models.CASCADE)
     name = models.CharField(
-        _("Name"), max_length=50, default="Person Company LTD")
+        _("Name"), max_length=50, default="")
     email = models.EmailField(_("Email"), blank=True, null=True)
     website = models.URLField(_("Website"), blank=True, null=True)
     phone = models.CharField(_("Phone"), max_length=40, null=True, blank=True)
@@ -39,3 +42,9 @@ class Company(models.Model):
     @property
     def phones(self):
         return ", ".join(filter(None, (self.phone, self.mobile)))
+    
+    def save(self, *args, **kwargs):
+        if not self.name:
+            user_profile = f"Company of user - {self.profile.user.email}" 
+            self.name = user_profile
+        super().save(*args, **kwargs)

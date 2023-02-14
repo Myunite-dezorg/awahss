@@ -3,10 +3,22 @@ from apps.agents.models.agent import Agent
 from django.utils.translation import gettext as _
 from django.db import models, transaction
 from django.utils import timezone
+from apps.stuffs.models import Aog
+
 
 class AogOrder(AbstractOrder):
+
+    ORDER_TECH_CHOICE = [
+        ("offloading", "Offloading"),
+        ("onloading", "Onloading")
+    ]
     order_number = models.CharField(max_length=20, unique=True, editable=False)
-    
+    order_tech = models.CharField(
+        max_length=20, choices=ORDER_TECH_CHOICE, default="offloading")
+    order_date = models.DateField(default=None)
+    # flight = models.ForeignKey()
+    subject = models.CharField(_("Subject"), max_length=155, default="")
+    order_items = models.ManyToManyField(Aog)
 
     def save(self, *args, **kwargs):
         if not self.id:
@@ -33,4 +45,3 @@ class AogOrder(AbstractOrder):
 
     def __str__(self):
         return f"[{self.agent}]-{self.order_number}"
-
