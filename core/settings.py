@@ -113,7 +113,9 @@ LOGIN_REDIRECT_URL = '/'
 
 AUTH_USER_MODEL = 'users.User'
 
+
 MIDDLEWARE = [
+
     'author.middlewares.AuthorDefaultBackendMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -131,8 +133,23 @@ GRAPHENE = {
   "SCHEMA": "graph.schema.schema",
 }
 
+ALLOWED_HOSTS = ["*"]
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ORIGIN_WHITELIST = ("http://localhost:3000",)
+
+# CSRF_TRUSTED_ORIGINS = [
+#     "*",
+#     "http://0.0.0.0:8000",
+#     "https://github.com",
+#     "http://127.0.0.1:8000",
+#     "http://andrewkharzin-fluffy-robot-grqq54q5q7fvg6g-8000.preview.app.github.dev",
+# ]
+
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000", 
+    "http://127.0.0.1:8000",
+    "http://andrewkharzin-fluffy-robot-grqq54q5q7fvg6g-8000.preview.app.github.dev",
+    "https://andrewkharzin-fluffy-robot-grqq54q5q7fvg6g-8000.preview.app.github.dev/admin/login/?next=/admin/"
+    ]
 
 TEMPLATES = [
     {
@@ -165,9 +182,6 @@ DATABASES = {
 }
 
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://8000-andrewkharzin-flissbot-jvfnmnmaiep.ws-eu67.gitpod.io"
-]
 
 
 DATE_FORMAT = ( ( 'd-m-Y' ))
