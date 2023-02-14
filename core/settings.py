@@ -51,7 +51,6 @@ APPLICATION_APPS = [
     "api",
     # "apps.aircraftblog",
     "apps.payload",
-    'apps.organizations',
     'apps.stuffs',
     # "apps.notes",
     # "apps.wrhs",
@@ -61,6 +60,7 @@ APPLICATION_APPS = [
     'apps.services',
     'apps.schedules',
     # 'apps.projects',
+    'apps.orders',
 ]
 
 SYSTEM_APPS = [

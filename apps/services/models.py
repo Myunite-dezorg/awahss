@@ -3,10 +3,9 @@ import enum
 import logging
 from apps.users.models import User
 from django.conf import settings
-from apps.agents.models import Agent
+from apps.agents.models.agent import Agent
 from django.utils.translation import gettext_lazy as _
 from apps.services.uuid import BaseUUID
-from apps.agents.models import Agent
 from apps.stuffs.models import Aog
 from django.shortcuts import reverse
 from apps.schedules.models import RegularScheduler

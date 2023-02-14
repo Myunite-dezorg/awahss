@@ -1,5 +1,5 @@
 from django.db import models
-from apps.agents.models import Agent
+from apps.agents.models.agent import Agent
 from django.utils.translation import gettext_lazy as _
 from apps.stuffs.uuid import BaseUUID
 
