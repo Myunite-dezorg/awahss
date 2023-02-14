@@ -49,7 +49,7 @@ class TaskAdmin(ImportExportModelAdmin):
         'status'
     ]
 
-    raw_id_fields = ['airline', ]
+    raw_id_fields = ['airline', 'registration',]
     
     def get_ac(self, obj):
         return obj.register.ac_type
