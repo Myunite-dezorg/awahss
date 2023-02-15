@@ -1,8 +1,4 @@
-ATTN: ALL CONCERNED
-FROM: VOLGA DNEPR AIRLINES, 14 KARBYSHEVA STR., ULYANOVSK, RUSSIA
-     TEL: +7 8422 590107, AFTN: UWLWIEBF, E-MAIL: PDSP@VOLGA-DNEPR.COM
-     FAX: +7 8422 590386, SITA: ULYOOVI,  TLX:    263838 VOLDN RU
-------------------------------------------------------------------------
+
        MOSCOW/SHEREMET (SVO/UUEE) ATA 12FEB/1125Z
                       load expected to commence Z
 VDA1308 MOSCOW/SHEREMET (SVO/UUEE) ATD 14FEB/2306Z ORIGIN  <----
