@@ -1,5 +1,6 @@
 from .base import AbstractOrder
 from apps.agents.models.agent import Agent
+from apps.services.models import AogService
 from django.utils.translation import gettext as _
 from django.db import models, transaction
 from django.utils import timezone
@@ -7,18 +8,9 @@ from apps.stuffs.models import Aog
 
 
 class AogOrder(AbstractOrder):
-
-    ORDER_TECH_CHOICE = [
-        ("offloading", "Offloading"),
-        ("onloading", "Onloading")
-    ]
+    service_request = models.ForeignKey(AogService, on_delete=models.CASCADE, default=None)
     order_number = models.CharField(max_length=20, unique=True, editable=False)
-    order_tech = models.CharField(
-        max_length=20, choices=ORDER_TECH_CHOICE, default="offloading")
-    order_date = models.DateField(default=None)
-    # flight = models.ForeignKey()
-    subject = models.CharField(_("Subject"), max_length=155, default="")
-    order_items = models.ManyToManyField(Aog)
+
 
     def save(self, *args, **kwargs):
         if not self.id:
@@ -38,10 +30,13 @@ class AogOrder(AbstractOrder):
             super().save(*args, **kwargs)
 
     def get_agent_id(self):
-        return f"{self.agent.agentid}"
+        return f"{self.service_request.agent.agentid}"
 
     def get_model_fields(agent):
         return agent._meta.get_field('agent')
+    
+    def get_agent_profile_email(self):
+        return f"{self.service_request.agent.profile.user.email}"
 
     def __str__(self):
-        return f"[{self.agent}]-{self.order_number}"
+        return f"{self.order_number}"

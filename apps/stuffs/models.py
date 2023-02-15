@@ -46,6 +46,7 @@ class BaseAgentStuff(BaseUUID):
 
 
 class Aog(BaseAgentStuff):
+    # aog_order = models.ForeignKey(AogOrder, on_delete=models.CASCADE)
     agent = models.ForeignKey(Agent, related_name='agent_aogs', on_delete=models.PROTECT)
     image = models.ImageField(
         upload_to='images/stuffs/aog', null=True, blank=True)

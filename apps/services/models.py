@@ -91,8 +91,8 @@ class BaseServiceRequest(BaseUUID):
 
 class AogService(BaseServiceRequest):
 
-    # agent = models.ForeignKey(
-    #     Agent, related_name='agent_services_request', on_delete=models.CASCADE)
+    agent = models.ForeignKey(
+        Agent, related_name='agent_services_request', on_delete=models.CASCADE)
     # service_item = models.ManyToManyField(
     #     Aog, related_name="aog_service_items")
    
@@ -101,10 +101,9 @@ class AogService(BaseServiceRequest):
     flight = models.ForeignKey(RegularScheduler, related_name="aog_from_flight", on_delete=models.CASCADE)
 
     aog_item = models.ManyToManyField(Aog)
-    fix_required = models.BooleanField(_("Fix on board"), default=False)
   
-    responsibles_persons = models.ManyToManyField(
-        'DutyPerson')
+    # responsibles_persons = models.ManyToManyField(
+    #     'DutyPerson')
     description = models.TextField(null=True, blank=True)
     created_by = models.ForeignKey(Agent, related_name='agent_created', verbose_name=_('created by'),
                                    on_delete=models.SET_NULL, null=True)
