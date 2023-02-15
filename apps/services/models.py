@@ -56,7 +56,7 @@ class ServiceManager(models.Manager):
         """
         return self.exclude(pk=pk).filter(**kwargs)
 
-class BaseServiceRequest(BaseUUID):
+class BaseServiceRequest(models.Model):
 
     STATES = (
         (State.TO_DO.value, _('To Do')),

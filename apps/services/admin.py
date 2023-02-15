@@ -5,13 +5,24 @@ from dynamic_raw_id.filters import DynamicRawIDFilter
 from adminfilters.multiselect import UnionFieldListFilter
 from django_admin_listfilter_dropdown.filters import RelatedDropdownFilter
 
+from django.urls import reverse
+from django.utils.html import format_html
+
 
 class PersonInline(admin.TabularInline):
     model = DutyPerson
     extra = 0
 
+
 @admin.register(AogService)
 class AogServiceAdmin(admin.ModelAdmin):
+
+    def invoice_link(self, obj):
+        if obj.id:
+            url = reverse('services:export_invoice', args=[obj.id])
+            return format_html('<a href="{}">Export to Excel</a>', url)
+        return ''
+    invoice_link.short_description = 'Export to Excel'
 
     list_display = [
         'number',
@@ -19,7 +30,8 @@ class AogServiceAdmin(admin.ModelAdmin):
         'service_name',
         'flight',
         'created_by',
-        
+        'invoice_link',
+
 
     ]
     list_display_links = ('number', 'flight')
@@ -28,7 +40,7 @@ class AogServiceAdmin(admin.ModelAdmin):
         # ('agent', RelatedDropdownFilter),
         # ('partner', RelatedDropdownFilter),
         ('type', UnionFieldListFilter),
-      
+
     )
     ordering = TASK_PRIORITY_FIELDS
     readonly_fields = ('data_createAt', 'data_updateAt', 'created_by')
@@ -40,4 +52,3 @@ class AogServiceAdmin(admin.ModelAdmin):
     # )
 
     inlines = [PersonInline]
-  

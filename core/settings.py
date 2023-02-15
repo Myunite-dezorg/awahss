@@ -93,6 +93,7 @@ THIRDPARTY_APPS = [
     "taggit", 
     'dynamic_raw_id',
     'django_select2',
+    'wkhtmltopdf',
 
 ]
 
