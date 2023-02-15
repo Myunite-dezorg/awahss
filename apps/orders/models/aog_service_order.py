@@ -8,6 +8,10 @@ from apps.stuffs.models import Aog
 
 
 class AogOrder(AbstractOrder):
+    
+    class Meta:
+        verbose_name = _("AOG Order")
+        verbose_name_plural = _("AOG Orders")
     service_request = models.ForeignKey(AogService, on_delete=models.CASCADE, default=None)
     order_number = models.CharField(max_length=20, unique=True, editable=False)
 

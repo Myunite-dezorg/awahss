@@ -54,7 +54,6 @@ APPLICATION_APPS = [
     'apps.stuffs',
     # "apps.notes",
     # "apps.wrhs",
-    # 'apps.uposts',
     # 'apps.wrhs.base_directory',
     # 'apps.publishers.Articles',
     'apps.services',

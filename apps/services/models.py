@@ -90,6 +90,7 @@ class BaseServiceRequest(models.Model):
 
 
 class AogService(BaseServiceRequest):
+   
 
     agent = models.ForeignKey(
         Agent, related_name='agent_services_request', on_delete=models.CASCADE)
@@ -126,6 +127,7 @@ class AogService(BaseServiceRequest):
 
 
     class Meta:
+        verbose_name = _("Request AOG handling")
         indexes = [
             models.Index(fields=TASK_PRIORITY_FIELDS, name='service_priority_idx'),
         ]

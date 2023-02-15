@@ -17,12 +17,12 @@ class PersonInline(admin.TabularInline):
 @admin.register(AogService)
 class AogServiceAdmin(admin.ModelAdmin):
 
-    def invoice_link(self, obj):
-        if obj.id:
-            url = reverse('services:export_invoice', args=[obj.id])
-            return format_html('<a href="{}">Export to Excel</a>', url)
-        return ''
-    invoice_link.short_description = 'Export to Excel'
+    # def invoice_link(self, obj):
+    #     if obj.id:
+    #         url = reverse('services:export_invoice', args=[obj.id])
+    #         return format_html('<a href="{}">Export to Excel</a>', url)
+    #     return ''
+    # invoice_link.short_description = 'Export to Excel'
 
     list_display = [
         'number',
@@ -30,7 +30,7 @@ class AogServiceAdmin(admin.ModelAdmin):
         'service_name',
         'flight',
         'created_by',
-        'invoice_link',
+
 
 
     ]
