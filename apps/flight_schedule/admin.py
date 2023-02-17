@@ -2,8 +2,13 @@ from django.contrib import admin
 from apps.flight_schedule.models import FlightTask, Tag, DocsCategory, TaskAttachments 
 from import_export.admin import ImportExportModelAdmin
 from apps.directory.models import Register
+
 from .forms import TaskForm
 from mptt.admin import MPTTModelAdmin
+
+from admin_auto_filters.filters import AutocompleteFilter
+
+
 
 
 admin.site.register(DocsCategory , MPTTModelAdmin)
@@ -15,9 +20,15 @@ class TagAdmin(ImportExportModelAdmin):
         'name'
     ]
 
-# Register your models here.
-@admin.register(FlightTask)
-class TaskAdmin(ImportExportModelAdmin):
+
+class AirlineFilter(AutocompleteFilter):
+    title = 'Airline' # display title
+    field_name = 'airline' # name of the foreign key field
+    
+# @admin.register(FlightTask)
+
+# class TaskAdmin(ImportExportModelAdmin):
+class TaskAdmin(admin.ModelAdmin):
     form  = TaskForm
     @admin.display(description='task_date')
     def admin_task_date(self, obj):
@@ -26,6 +37,8 @@ class TaskAdmin(ImportExportModelAdmin):
     def admin_sched_time(self, obj):
         return obj.sched_time.strftime('%H:%M')
     
+    raw_id_fields = ('airline',)
+    list_filter = [AirlineFilter]
     list_display = [
         'pkid',
         'user',
@@ -49,13 +62,13 @@ class TaskAdmin(ImportExportModelAdmin):
         'status'
     ]
 
-    raw_id_fields = ['airline', ]
+    search_fields = ("airline",)
     
     def get_ac(self, obj):
         return obj.register.ac_type
     
 
-    
+admin.site.register(FlightTask, TaskAdmin)
 
 
     

@@ -93,6 +93,7 @@ THIRDPARTY_APPS = [
     'dynamic_raw_id',
     'django_select2',
     'wkhtmltopdf',
+    'admin_auto_filters',
 
 ]
 
