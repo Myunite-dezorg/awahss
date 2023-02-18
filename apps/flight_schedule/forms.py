@@ -19,6 +19,14 @@ class AirlineWidget(s2forms.ModelSelect2Widget):
     ]
 
 
+class RegisterWidget(s2forms.ModelSelect2Widget):
+    search_fields = [
+
+        "number__icontains",
+
+    ]
+
+
 class TaskForm(forms.ModelForm):
 
     class Meta:
@@ -42,6 +50,7 @@ class TaskForm(forms.ModelForm):
         ]
         widgets = {
             "airline": AirlineWidget,
+            "registration": RegisterWidget,
         }
 
     payload = forms.CharField(max_length=50,
