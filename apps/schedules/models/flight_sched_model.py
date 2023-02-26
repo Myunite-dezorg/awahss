@@ -22,7 +22,7 @@ class Schedule(BaseSched):
     
     
 class Airline(models.Model):
-    schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE)
+    schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, null=True)
     iataCode = models.CharField(_("Iata code"), max_length=3, null=True, blank=True)
     icaoCode = models.CharField(_("Icao code"), max_length=4, null=True, blank=True)
     name = models.CharField(_("Name"), max_length=4, null=True, blank=True)
@@ -31,7 +31,7 @@ class Airline(models.Model):
         return f"{self.iataCode}"
 
 class Arrival(models.Model):
-    schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE)
+    schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, null=True)
     actualTime = models.DateTimeField()
     baggage = models.IntegerField()
     delay = models.IntegerField()
@@ -48,7 +48,7 @@ class Arrival(models.Model):
         return f"{self.iataCode}"
     
 class Departure(models.Model):
-    schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE)
+    schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, null=True)
     actualTime = models.DateTimeField()
     baggage = models.IntegerField()
     delay = models.IntegerField()
@@ -65,7 +65,7 @@ class Departure(models.Model):
 
 
 class Flight(models.Model):
-    schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE)
+    schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, null=True)
     iataNumber = models.CharField(_("Iata number"), max_length=5, null=True, blank=True)
     icaoNumber = models.CharField(_("Icao number"), max_length=10, null=True, blank=True)
     number = models.IntegerField()

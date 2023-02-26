@@ -65,6 +65,7 @@ urlpatterns = [
     path('', include('apps.services.urls')),
 
     path("select2/", include("django_select2.urls")),
+    path('', include("apps.schedules.urls")),
 
     # path('', include('apps.publishers.Articles.urls')),
    

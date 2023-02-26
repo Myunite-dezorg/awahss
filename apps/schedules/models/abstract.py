@@ -1,5 +1,5 @@
 from django.db import models
-from .uuid import BaseUUID
+from apps.schedules.models.uuid import BaseUUID
 
 
 
