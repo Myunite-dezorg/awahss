@@ -53,7 +53,7 @@ urlpatterns = [
     # Optional UI:
     path('api/v1/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('api/v1/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
-    path('flights/', include("apps.flight_schedule.urls", namespace='scheduler')),
+    path('flights/', include("apps.projects.urls", namespace='scheduler')),
     path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True))),
     path('tinymce/', include('tinymce.urls')),
     path('accounts/', include("apps.users.urls")),

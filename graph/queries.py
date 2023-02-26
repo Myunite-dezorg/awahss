@@ -4,8 +4,8 @@ from apps.directory import models
 from apps.users.models import CustomUser
 from apps.users.profiles.models import Profile
 from django.conf import settings
-from apps.flight_schedule.schema import ScheduleType
-from apps.flight_schedule.models import FlightTask, Tag, TaskAttachments, DocsCategory
+from apps.projects.schema import ScheduleType
+from apps.projects.models import FlightTask, Tag, TaskAttachments, DocsCategory
 from apps.payload.models import Payload
 
 

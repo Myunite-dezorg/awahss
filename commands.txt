@@ -5,3 +5,6 @@ pip install coverage
 coverage run --omit='*/venv/*' manage.py test
 coverage html
 pip install djangorestframework
+
+# Save bulk delete all makemigrations command
+find . -path "*/migrations/*.py" -not -path "*/site-packages/*" -not -path "*/__init__.py" -delete

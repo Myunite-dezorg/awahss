@@ -8,7 +8,7 @@ from django.utils.translation import gettext_lazy as _
 from apps.services.uuid import BaseUUID
 from apps.stuffs.models import Aog
 from django.shortcuts import reverse
-from apps.schedules.models import RegularScheduler
+from apps.schedules.models.flight_sched_model import Schedule
 from core.utils.mail import send_mail_async as send_mail
 from hashlib import sha1
 # from django.http import HttpResponseRedirect
@@ -99,7 +99,7 @@ class AogService(BaseServiceRequest):
    
     service_name = models.CharField(
         _("Service name"), max_length=50, blank=False, null=False)
-    flight = models.ForeignKey(RegularScheduler, related_name="aog_from_flight", on_delete=models.CASCADE)
+    flight = models.ForeignKey(Schedule, related_name="aog_from_flight", on_delete=models.CASCADE)
 
     aog_item = models.ManyToManyField(Aog)
   

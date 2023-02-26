@@ -10,37 +10,36 @@ from dynamic_raw_id.admin import DynamicRawIDMixin
 from dynamic_raw_id.filters import DynamicRawIDFilter
 
 
-from .models import RegularScheduler
-
-# class ScheduleResource(resources.ModelResource):
-#     tech_route = Field(attribute='tech_route', column_name='tech_route') 
-#     flt_number = Field(attribute='flt_number', column_name='flt_number') 
-#     airport = Field(attribute='airport', column_name='airport') 
-#     sta = Field(attribute='sta', column_name='sta',  widget=TimeWidget('<time_format>')) 
-#     pta = Field(attribute='pta', column_name='pta',  widget=TimeWidget('<time_format>')) 
-#     ata = Field(attribute='ata', column_name='ata',  widget=TimeWidget('<time_format>')) 
-#     ...
-#     class Meta:
-#         model = RegularScheduler
-#         fields = ('tech_route', 'flt_number', 'airport', 'sta', 'pta', 'ata',)
+from apps.schedules.models.flight_sched_model import Schedule, Airline, Arrival, Departure, Flight
 
 
+class AirlineInline(admin.TabularInline):
+    model = Airline
+    extra = 0
+class ArrivalInline(admin.TabularInline):
+    model = Arrival
+    extra = 0
+class DepartureInline(admin.TabularInline):
+    model = Departure
+    extra = 0
+class FlightInline(admin.TabularInline):
+    model = Flight
+    extra = 0
 
-@admin.register(RegularScheduler)
+
+@admin.register(Schedule)
 class ShedAdmin(DynamicRawIDMixin, ImportExportModelAdmin):  
-    # resource_class = ScheduleResource 
-    model = RegularScheduler
-    # sta = Field(column_name='sta', widget=TimeWidget(format="%H:%M:%S"))
-    # pta = Field(column_name='pta', widget=TimeWidget(format="%H:%M:%S"))
-    # ata = Field(column_name='ata', widget=TimeWidget(format="%H:%M:%S"))
-    # std = Field(column_name='std', widget=TimeWidget(format="%H:%M:%S"))
-    # ptd = Field(column_name='ptd', widget=TimeWidget(format="%H:%M:%S"))
-    # atd = Field(column_name='atd', widget=TimeWidget(format="%H:%M:%S"))
+    model = Schedule
+    inlines = [
+        AirlineInline,
+        ArrivalInline,
+        DepartureInline,
+        FlightInline,
+                
+               ]
 
-
-    list_display = ('tech_rout', 'flt_number',  'airport', 'sta', 'pta', 'ata', 'std', 'ptd', 'atd')
-    search_fields = ['flt_number','airport']
-
-    
-    
-    # list_display_links = ['flt_number']
+    list_display = (
+        'status', 
+        'type',  
+    )
+   

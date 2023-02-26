@@ -1,5 +1,5 @@
 from django.urls import path, include
-from apps.flight_schedule.flight_schedule_api.views import FlightTaskList
+
 from rest_framework import routers
 from api.apps.users.views import *
 from api.apps.profiles.views import *
@@ -20,7 +20,7 @@ router.register('ping', PingViewSet, basename="ping")
 
 
 urlpatterns = [
-    path('scheduler/', FlightTaskList.as_view(), name="api_scheduler"),
+    # path('scheduler/', FlightTaskList.as_view(), name="api_scheduler"),
     # path('users', include("api.apps.users.urls")),
     path('profiles', include("api.apps.profiles.urls")),
     path('', include(router.urls)),

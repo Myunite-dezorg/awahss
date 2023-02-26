@@ -1,6 +1,8 @@
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
-from apps.directory.models import Airline, Register, Station
+from apps.directory.models.airline import Airline
+from apps.directory.models.register import Register
+from apps.directory.models.station import Station
 
 
 @admin.register(Airline)
