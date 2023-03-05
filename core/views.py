@@ -1,11 +1,10 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
+import json
+import logging
+from django.views import View
+from django.http import JsonResponse
+
+from core.celery import app
+from core.settings import DEBUG
 
 
-
-# Create your views here.
-@csrf_exempt
-def homepage(request):
-    return render(request=request,
-                  template_name='homepage.html')
+logger = logging.getLogger(__name__)

@@ -30,7 +30,6 @@ class ProjectAdmin(admin.ModelAdmin):
     #     return obj.sched_time.strftime('%H:%M')
     
     list_display = [
-        'pkid',
         'user',
         'project_date',
         'project_name',
@@ -42,7 +41,7 @@ class ProjectAdmin(admin.ModelAdmin):
         
     ]
     link_display = [
-        'technology',
+        'project_name',
     ]
     list_editable = [
         'status'

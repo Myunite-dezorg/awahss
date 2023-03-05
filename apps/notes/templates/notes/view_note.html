@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Note</title>
+</head>
+<body>
+    <h1>{{ note.title }}</h1>
+    <p>{{ note.content }}</p>
+    <p>Created at: {{ note.created_at }}</p>
+    <p><a href="{% url 'share_note' note.id %}?chat_id=<CHAT_ID_HERE>">Share Note via Telegram</a></p>
+</body>
+</html>

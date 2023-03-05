@@ -8,7 +8,7 @@ from django.utils.translation import gettext_lazy as _
 from apps.services.uuid import BaseUUID
 from apps.stuffs.models import Aog
 from django.shortcuts import reverse
-from apps.schedules.models.flight_sched_model import Schedule
+from apps.schedules.models.sched import Schedule
 from core.utils.mail import send_mail_async as send_mail
 from hashlib import sha1
 # from django.http import HttpResponseRedirect

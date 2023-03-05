@@ -1,6 +1,7 @@
 from django.contrib import admin
+import debug_toolbar
 from django.urls import path, include, re_path
-from apps.aircraft import views
+# from apps.aircraft import views
 from rest_framework import routers
 from django.views.generic import TemplateView
 from drf_yasg.views import get_schema_view  # new
@@ -13,8 +14,10 @@ from graphene_django.views import GraphQLView
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 from wkhtmltopdf.views import PDFTemplateView
 
+from django.views.decorators.csrf import csrf_exempt
 
-from .views import homepage
+
+from core import views
 
 schema_view = get_schema_view(  # new
     openapi.Info(
@@ -32,7 +35,7 @@ schema_view = get_schema_view(  # new
 )
 
 router = routers.DefaultRouter()
-router.register(r'aircrafts', views.AcViewSet())
+# router.register(r'aircrafts', views.AcViewSet())
 
 urlpatterns = [
     path(  # new
@@ -57,7 +60,7 @@ urlpatterns = [
     path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True))),
     path('tinymce/', include('tinymce.urls')),
     path('accounts/', include("apps.users.urls")),
-    path('', homepage, name="index"),
+    # path('', homepage, name="index"),
     path('admin/dynamic_raw_id/', include('dynamic_raw_id.urls')),
 
     path('path/', PDFTemplateView.as_view(template_name='my_template.html',
@@ -66,6 +69,8 @@ urlpatterns = [
 
     path("select2/", include("django_select2.urls")),
     path('', include("apps.schedules.urls")),
+
+   
 
     # path('', include('apps.publishers.Articles.urls')),
    

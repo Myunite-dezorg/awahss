@@ -1,22 +1,26 @@
-from django.shortcuts import render
-from django_bookmark_base.views import BookmarkToggleView
-from apps.collections.models import Collection, CollectionBookmark
+from django.shortcuts import render, redirect,  get_object_or_404
+from .models import Note
 
 
-
-# Create your views here.
-
-
-# class CollectionDetailView(BookmarkViewMixin):
-#     bookmark_model = CollectionBookmark
+def view_note(request, note_id):
+    note = get_object_or_404(Note, id=note_id)
+    return render(request, 'notes/view_note.html', {'note': note})
 
 
-class CollectionBookmarkToggleView(BookmarkToggleView):
-    bookmark_model = CollectionBookmark
+def search_notes(request):
+    query = request.GET.get('q')
+    if query:
+        notes = Note.objects.filter(title__icontains=query)
+    else:
+        notes = Note.objects.all()
+    return render(request, 'notes/search_notes.html', {'notes': notes})
 
-    def get_data(self):
-        collection = Collection.objects.get(pk=self.kwargs['pk'])
-        return {
-            'bookmarked': self.bookmarked,
-            'bookmarks_count': collection.bookmarks_count
-        }
+
+def add_note(request):
+    if request.method == 'POST':
+        title = request.POST['title']
+        content = request.POST['content']
+        note = Note.objects.create(title=title, content=content)
+        return redirect('view_note', note.id)
+    return render(request, 'notes/add_note.html')
+

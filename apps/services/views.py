@@ -9,7 +9,7 @@ from django.http import HttpResponse
 from .models import AogService
 from django.http import FileResponse
 from django.shortcuts import render
-from apps.schedules.models.flight_sched_model import Schedule
+from apps.schedules.models.sched import Schedule
 
 
 def index(request):

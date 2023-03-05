@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import logging
+import sys
 from pathlib import Path
 import os
 import environ
@@ -17,6 +18,12 @@ import django
 from datetime import timedelta
 from django.utils.encoding import force_str
 django.utils.encoding.force_text = force_str
+import dotenv
+import dj_database_url
+
+
+from pathlib import Path
+
 
 # Initialise environment variables
 env = environ.Env()
@@ -25,17 +32,36 @@ environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Load env variables from file
+dotenv_file = BASE_DIR / ".env"
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
+if os.environ.get('DJANGO_DEBUG', default=False) in ['True', 'true', '1', True]:
+    DEBUG = True
+else:
+    DEBUG = False
 
+
+SECRET_KEY = os.getenv(
+    "DJANGO_SECRET_KEY",
+    'x%#3&%giwv8f0+%r946en7z&d@9*rc$sl0qoql56xr%bh^w2mj',
+)
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-h@evv*(t$nj+%7olu37)d-ulo_2j==-$iy#&c@ojvi@57&&uw-'
+# SECRET_KEY = 'django-insecure-h@evv*(t$nj+%7olu37)d-ulo_2j==-$iy#&c@ojvi@57&&uw-'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+
+ALLOWED_HOSTS = ['*',]
+
+INTERNAL_IPS = [
+    # ...
+    '127.0.0.1',
+    # ...
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
 
 
 # Application definition
@@ -51,7 +77,7 @@ APPLICATION_APPS = [
     # "apps.aircraftblog",
     "apps.payload",
     'apps.stuffs',
-    # "apps.notes",
+    "apps.notes",
     # "apps.wrhs",
     # 'apps.wrhs.base_directory',
     # 'apps.publishers.Articles',
@@ -59,6 +85,7 @@ APPLICATION_APPS = [
     'apps.schedules',
     # 'apps.projects',
     'apps.orders',
+    'apps.ibase',
 ]
 
 SYSTEM_APPS = [
@@ -127,22 +154,18 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# AUTHENTICATION_BACKENDS = [
+#     'django.contrib.auth.backends.ModelBackend',
+#     'apps.users.user_backend.CustomBackend',
+# ]
+
 ROOT_URLCONF = 'core.urls'
 
 GRAPHENE = {
   "SCHEMA": "graph.schema.schema",
 }
 
-ALLOWED_HOSTS = ["*"]
-CORS_ORIGIN_ALLOW_ALL = True
 
-# CSRF_TRUSTED_ORIGINS = [
-#     "*",
-#     "http://0.0.0.0:8000",
-#     "https://github.com",
-#     "http://127.0.0.1:8000",
-#     "http://andrewkharzin-fluffy-robot-grqq54q5q7fvg6g-8000.preview.app.github.dev",
-# ]
 
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000", 
@@ -171,16 +194,9 @@ WSGI_APPLICATION = 'core.wsgi.application'
 ASGI_APPLICATION = "config.asgi.application"
 
 
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(conn_max_age=600, default="sqlite:///db.sqlite3"),
 }
-
 
 
 
@@ -288,7 +304,6 @@ SIMPLE_JWT = {
 
 IMPORT_EXPORT_USE_TRANSACTIONS = True
 
-CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8080",
@@ -313,7 +328,32 @@ USE_I18N = True
 
 USE_TZ = True
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.0/howto/static-files/
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+# -----> CELERY
+REDIS_URL = os.getenv('REDIS_URL', 'redis://redis:6379')
+BROKER_URL = REDIS_URL
+CELERY_BROKER_URL = REDIS_URL
+CELERY_RESULT_BACKEND = REDIS_URL
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = TIME_ZONE
+CELERY_TASK_DEFAULT_QUEUE = 'default'
+
+
+# -----> TELEGRAM
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
+if TELEGRAM_TOKEN is None:
+    logging.error(
+        "Please provide TELEGRAM_TOKEN in .env file.\n"
+        "Example of .env file: https://github.com/ohld/django-telegram-bot/blob/main/.env_example"
+    )
+    sys.exit(1)
+
+TELEGRAM_LOGS_CHAT_ID = os.getenv("TELEGRAM_LOGS_CHAT_ID", default=None)
 
 # CHANNEL_LAYERS = {
 #     "default": {

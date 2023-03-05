@@ -47,7 +47,7 @@ class FlightProject(Abstract):
     postObjects = PostObjects()
  
     def save(self, *args, **kwargs):
-        self.slug = slugify(f'{self.task_date}-{self.id}-flight:{self.flight}')
+        self.slug = slugify(f'{self.project_date}-{self.id}-flight:{self.project_name}')
         super(FlightProject, self).save(*args, **kwargs)
 
 
@@ -58,7 +58,7 @@ class FlightProject(Abstract):
 
 
     def __str__(self):
-        return f"{self.task_date} - {self.technology.upper()}"
+        return f"{self.project_date}/{self.project_name}"
     
     # def get_model_fields(register):
     #    return register._meta.get_field('ac_type')
