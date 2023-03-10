@@ -1,16 +1,18 @@
 import graphene
 from graphene_django import DjangoObjectType
-from apps.directory import models
-from apps.users.models import CustomUser
-from apps.users.profiles.models import Profile
+from apps.directory.models.airline import Airline
+from apps.directory.models.register import Register
+from apps.directory.models.station import Station
+from apps.users.models import User
+from apps.profiles.models import Profile
 from django.conf import settings
 from apps.projects.schema import ScheduleType
-from apps.projects.models import FlightTask, Tag, TaskAttachments, DocsCategory
+from apps.projects.models.flight_project import FlightProject, Tag
 from apps.payload.models import Payload
 
 class UserType(DjangoObjectType):
     class Meta:
-        model = CustomUser
+        model = User
        
 
 class ProfileType(DjangoObjectType):
@@ -26,22 +28,22 @@ class ProfileType(DjangoObjectType):
         else:
             return None
 
-class TaskAttachType(DjangoObjectType):
-    class Meta:
-        model = TaskAttachments
+# class TaskAttachType(DjangoObjectType):
+#     class Meta:
+#         model = TaskAttachments
 
-    file = graphene.String()
+#     file = graphene.String()
 
-    def resolve_docs(self, info):
-        if self.file and self.file.url:
-            return info.context.build_absolute_uri(self.file.url)
+#     def resolve_docs(self, info):
+#         if self.file and self.file.url:
+#             return info.context.build_absolute_uri(self.file.url)
 
-        else:
-            return None
+#         else:
+#             return None
 
-class DocsCategoryType(DjangoObjectType):
-    class Meta:
-        model = DocsCategory
+# class DocsCategoryType(DjangoObjectType):
+#     class Meta:
+#         model = DocsCategory
 
 
 class TagType(DjangoObjectType):
@@ -55,12 +57,12 @@ class PayloadType(DjangoObjectType):
 
 class ScheduleType(DjangoObjectType):
     class Meta:
-        model = FlightTask
+        model = FlightProject
 
 
 class AirlineType(DjangoObjectType):
     class Meta:
-        model = models.Airline
+        model = Airline
 
     arl_logo = graphene.String()
     banner_img = graphene.String()
@@ -84,7 +86,7 @@ class AirlineType(DjangoObjectType):
 
 class RegistrationType(DjangoObjectType):
     class Meta:
-        model = models.Register
+        model = Register
     
     ac_photo = graphene.String()
 
@@ -97,7 +99,7 @@ class RegistrationType(DjangoObjectType):
 
 class StationType(DjangoObjectType):
    class Meta:
-      model = models.Station
+      model = Station
 
    country_flag = graphene.String()
 

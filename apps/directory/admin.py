@@ -8,7 +8,7 @@ from apps.directory.models.station import Station
 @admin.register(Airline)
 class AilineAdmin(ImportExportModelAdmin):
     list_display = [
-        
+        'id',
         'iata',
         'icao',
         'rus_code',

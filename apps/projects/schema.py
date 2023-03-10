@@ -2,12 +2,12 @@ from django.contrib.auth import get_user_model
 from graphene_django import DjangoObjectType
 import graphene
 
-from .models import FlightTask
+from apps.projects.models.flight_project import FlightProject
 
 
 class ScheduleType(DjangoObjectType):
     class Meta:
-        model = FlightTask
+        model = FlightProject
 
 
 # class AuthorType(DjangoObjectType):
@@ -62,7 +62,7 @@ class Query(graphene.ObjectType):
 
     def resolve_all_flights(root, info):
         return (
-            FlightTask.objects.all()
+            FlightProject.objects.all()
         )
     # def resolve_all_profiles(root, info):
     #     return (
