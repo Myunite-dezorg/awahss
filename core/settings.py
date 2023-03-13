@@ -193,9 +193,18 @@ TEMPLATES = [
 WSGI_APPLICATION = 'core.wsgi.application'
 ASGI_APPLICATION = "config.asgi.application"
 
+# DATABASE_ROUTERS = ('core.dbrouters.MyDBRouter',)
 
 DATABASES = {
     'default': dj_database_url.config(conn_max_age=600, default="sqlite:///db.sqlite3"),
+    'atlas': {
+            'ENGINE': 'djongo',
+            'NAME': 'airlines',
+            'ENFORCE_SCHEMA': False,
+            'CLIENT': {
+                'host': 'mongodb+srv://<andrewkharzin19831112>:<andrewkharzin19831112>@cluster0.whmdn.mongodb.net/?retryWrites=true&w=majority'
+            }  
+    }
 }
 
 
@@ -393,6 +402,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+# Define the path to the airlines_logos folder relative to the base directory
+# AIRLINES_LOGOS_DIR = os.path.join(BASE_DIR, 'media/airlines/square/')
+
+# Set the MEDIA_ROOT to the path of the airlines_logos folder
+
 
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

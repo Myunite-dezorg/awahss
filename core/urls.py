@@ -69,6 +69,7 @@ urlpatterns = [
 
     path("select2/", include("django_select2.urls")),
     path('', include("apps.schedules.urls")),
+    path('directory/', include("apps.directory.urls"))
 
    
 

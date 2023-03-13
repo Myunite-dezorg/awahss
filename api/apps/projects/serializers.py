@@ -3,7 +3,7 @@ from apps.projects.models.flight_project import FlightProject
 from apps.projects.models.flight import Flight
 from apps.directory.models.airline import Airline
 from apps.directory.models.register import Register
-from apps.directory.models.station import Station
+from apps.directory.models.airports import Airport
 from rest_framework import routers, serializers, viewsets
 
 
@@ -56,7 +56,7 @@ class AirlineSerializer(serializers.ModelSerializer):
 
         model = Airline
 
-class StationSerializer(serializers.ModelSerializer):
+class AirportSerializer(serializers.ModelSerializer):
     class Meta:
         fields = (
             'iata',
@@ -64,5 +64,5 @@ class StationSerializer(serializers.ModelSerializer):
            
         )    
 
-        model = Station
+        model = Airport
 

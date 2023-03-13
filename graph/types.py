@@ -2,7 +2,7 @@ import graphene
 from graphene_django import DjangoObjectType
 from apps.directory.models.airline import Airline
 from apps.directory.models.register import Register
-from apps.directory.models.station import Station
+from apps.directory.models.airports import Airport
 from apps.users.models import User
 from apps.profiles.models import Profile
 from django.conf import settings
@@ -99,7 +99,7 @@ class RegistrationType(DjangoObjectType):
 
 class StationType(DjangoObjectType):
    class Meta:
-      model = Station
+      model = Airport
 
    country_flag = graphene.String()
 

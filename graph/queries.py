@@ -2,7 +2,7 @@ import graphene
 from .types import *
 from apps.directory.models.airline import Airline
 from apps.directory.models.register import Register
-from apps.directory.models.station import Station
+from apps.directory.models.airports import Airport
 from apps.users.models import User
 from apps.profiles.models import Profile
 from django.conf import settings
@@ -50,7 +50,7 @@ class Query(graphene.ObjectType):
         )
     def resolve_get_stations(root, info):
         return (
-            Station.objects.all()
+            Airport.objects.all()
         )
     def resolve_get_payload(root, info):
         return (

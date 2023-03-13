@@ -1,8 +1,23 @@
 import graphene
+from django_filters import FilterSet
 from graphene_django import DjangoObjectType
+from graphene_django.filter import DjangoFilterConnectionField
 from apps.directory.models.airline import Airline
 
-
+class AirlineFilter(FilterSet):
+    class Meta:
+        model = Airline
+        fields = [
+            'codeIataAirline',
+            'codeIcaoAirline',
+            'iataPrefixAccounting',
+        ]
+        filter_fields = {
+            'codeIataAirline': ['exact', 'icontains'],
+            'codeIcaoAirline': ['exact', 'icontains'],
+            'iataPrefixAccounting': ['exact', 'icontains'],
+        }
+        interfaces = (graphene.relay.Node, )
 
 
   
@@ -14,16 +29,13 @@ class AirlineType(DjangoObjectType):
         return self.arl_logo
     class Meta:
         model = Airline
+        interfaces = (graphene.relay.Node,)
+        filterset_class = AirlineFilter
+        fields = '__all__'
 
 
 class Query(graphene.ObjectType):
-    get_airlines = graphene.List(AirlineType)
-   
-   
-    def resolve_get_airlines(root, info):
-        return (
-            Airline.objects.all()
-        )
+    airlines = DjangoFilterConnectionField(AirlineType)
        
 
 
