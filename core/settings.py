@@ -52,7 +52,8 @@ SECRET_KEY = os.getenv(
 
 
 
-ALLOWED_HOSTS = ['*',]
+# ALLOWED_HOSTS = ['*',]
+ALLOWED_HOSTS = ['devhub.skyjets.space', 'skyjets.space', '212.118.42.158']
 
 INTERNAL_IPS = [
     # ...
@@ -196,14 +197,14 @@ ASGI_APPLICATION = "config.asgi.application"
 # DATABASE_ROUTERS = ('core.dbrouters.MyDBRouter',)
 
 DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600, default="sqlite:///db.sqlite3"),
-    'atlas': {
-            'ENGINE': 'djongo',
-            'NAME': 'airlines',
-            'ENFORCE_SCHEMA': False,
-            'CLIENT': {
-                'host': 'mongodb+srv://<andrewkharzin19831112>:<andrewkharzin19831112>@cluster0.whmdn.mongodb.net/?retryWrites=true&w=majority'
-            }  
+    # 'default': dj_database_url.config(conn_max_age=600, default="sqlite:///db.sqlite3"),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'awahss_db',
+        'USER': 'awahss_db_user',
+        'PASSWORD': '19831112',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 

@@ -38,6 +38,14 @@ class AirportType(DjangoObjectType):
 
 class Query(graphene.ObjectType):
     airports = DjangoFilterConnectionField(AirportType)
+    airports_count = graphene.Int()
+    airport = graphene.Field(AirportType, id=graphene.Int())
+
+    def resolve_airports_count(self, info):
+        return Airport.objects.count()
+    
+    def resolve_airport(root, info, id):
+        return Airport.objects.get(id=id)
        
 
 

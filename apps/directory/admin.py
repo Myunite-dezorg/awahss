@@ -44,7 +44,7 @@ class AilineAdmin(ImportExportModelAdmin):
 
         
     ]
-    search_fields = ['codeIataAirline','codeIcaoAirline', 'codeIso2Country',]
+    search_fields = ['codeIataAirline', 'nameAirline', 'codeIcaoAirline', 'codeIso2Country', 'iataPrefixAccounting',]
     
 @admin.register(Register)
 class RegisterAdmin(ImportExportModelAdmin):
