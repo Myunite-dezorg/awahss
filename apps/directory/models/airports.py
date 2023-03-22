@@ -23,9 +23,9 @@ class Airport(models.Model):
     
     gmt = models.CharField(max_length=6, null=True, blank=True)
     codeIataAirport = models.CharField(_("Airport IATA"), max_length=3, default="")
-    codeIcaoAirport = models.CharField(_("Airport ICAO"), max_length=4, default="")
-    codeIataCity = models.CharField(_("City IATA"), max_length=3, default="")
-    codeIso2Country = models.CharField(_("ISO2Country"), max_length=2, default="")
+    codeIcaoAirport = models.CharField(_("Airport ICAO"), max_length=30, default="")
+    codeIataCity = models.CharField(_("City IATA"), max_length=10, default="")
+    codeIso2Country = models.CharField(_("ISO2Country"), max_length=5, default="")
     latitudeAirport = models.DecimalField(max_digits=16, decimal_places=12, blank=True, null=True)
     longitudeAirport = models.DecimalField(max_digits=16, decimal_places=12, blank=True, null=True)
     nameAirport = models.CharField(_("Airport name"), max_length=100, null=True, blank=True)
