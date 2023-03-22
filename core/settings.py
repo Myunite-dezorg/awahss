@@ -209,7 +209,6 @@ DATABASES = {
 }
 
 
-
 DATE_FORMAT = ( ( 'd-m-Y' ))
 DATE_INPUT_FORMATS = ( ('%d-%m-%Y'),)
 DATETIME_FORMAT = (( 'd-m-Y H:i' ))
@@ -353,17 +352,6 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = TIME_ZONE
 CELERY_TASK_DEFAULT_QUEUE = 'default'
 
-
-# -----> TELEGRAM
-TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
-if TELEGRAM_TOKEN is None:
-    logging.error(
-        "Please provide TELEGRAM_TOKEN in .env file.\n"
-        "Example of .env file: https://github.com/ohld/django-telegram-bot/blob/main/.env_example"
-    )
-    sys.exit(1)
-
-TELEGRAM_LOGS_CHAT_ID = os.getenv("TELEGRAM_LOGS_CHAT_ID", default=None)
 
 # CHANNEL_LAYERS = {
 #     "default": {
