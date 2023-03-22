@@ -197,15 +197,15 @@ ASGI_APPLICATION = "config.asgi.application"
 # DATABASE_ROUTERS = ('core.dbrouters.MyDBRouter',)
 
 DATABASES = {
-    # 'default': dj_database_url.config(conn_max_age=600, default="sqlite:///db.sqlite3"),
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'awahss_db',
-        'USER': 'awahss_db_user',
-        'PASSWORD': '19831112',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
+    'default': dj_database_url.config(conn_max_age=600, default="sqlite:///db.sqlite3")
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'awahss_db',
+    #     'USER': 'awahss_db_user',
+    #     'PASSWORD': '19831112',
+    #     'HOST': 'localhost',
+    #     'PORT': '',
+    # }
 }
 
 
