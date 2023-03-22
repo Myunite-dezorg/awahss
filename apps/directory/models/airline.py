@@ -8,11 +8,14 @@ from django.utils.html import mark_safe
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-def airline_image_path(instance, filename):
-    return f"airlines/square/{filename}"
+def link_airline_image(instance, **kwargs):
+    if instance.codeIataAirline:
+        filename = f"{instance.ncodeIataAirlineame}.png"
+        filepath = os.path.join(settings.MEDIA_ROOT, 'airlines/square', filename)
+        if os.path.exists(filepath):
+            instance.arl_logo = os.path.join('airlines/square', filename)
+            instance.save()
 
-# def get_image_path(instance, filename):
-#     return os.path.join(settings.AIRLINES_LOGOS_DIR, f'{instance.codeIataAirline}.png')
 
 def airline_banner_directory_path(instance, filename):
         codeIataAirline = slugify(instance.codeIataAirline)
@@ -40,17 +43,17 @@ class Airline(models.Model):
     nameCountry = models.CharField(_("Country"), max_length=85, default="", null=True, blank=True)
     type = models.CharField(_("Type"), max_length=155, default="", blank=True)
     arl_logo = models.ImageField(
-        upload_to=airline_image_path)
+        upload_to=link_airline_image)
     banner_img = models.ImageField(
         upload_to=airline_banner_directory_path, blank=True, null=True)
     
 
-    def link_image(self):
-        filenames = os.listdir('media/airlines/square')
-        matching_filenames = [fn for fn in filenames if fn.startswith(self.codeIataAirline)]
-        if matching_filenames:
-            self.arl_logo = matching_filenames[0]
-            self.save()
+    # def link_image(self):
+    #     filenames = os.listdir('media/airlines/square')
+    #     matching_filenames = [fn for fn in filenames if fn.startswith(self.codeIataAirline)]
+    #     if matching_filenames:
+    #         self.arl_logo = matching_filenames[0]
+    #         self.save()
 
     @property
     def thumbnail_preview(self):
@@ -63,7 +66,12 @@ class Airline(models.Model):
         return f"{self.codeIataAirline.upper()}"
 
 
+# @receiver(post_save, sender=Airline)
+# def link_airline_arl_logo(sender, instance, created, **kwargs):
+#     if created or instance.codeIataAirline != Airline.objects.get(pk=instance.pk).codeIataAirline:
+#         instance.link_image()
+
+
 @receiver(post_save, sender=Airline)
-def link_airline_arl_logo(sender, instance, created, **kwargs):
-    if created or instance.codeIataAirline != Airline.objects.get(pk=instance.pk).codeIataAirline:
-        instance.link_image()
+def airline_post_save(sender, instance, **kwargs):
+    link_airline_image(instance, **kwargs)
