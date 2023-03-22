@@ -33,8 +33,8 @@ class Airline(models.Model):
     callsign = models.CharField(_("Callsign"), max_length=155, default="")
     codeHub  = models.CharField(_("CodeHUB"), max_length=5, default="")
     codeIso2Country = models.CharField(_("CodeIso2Country"), max_length=4, default="", blank=True)
-    codeIataAirline = models.CharField(_("Iata"), max_length=2, default="")
-    codeIcaoAirline = models.CharField(_("Icao"), max_length=3, default="")
+    codeIataAirline = models.CharField(_("Iata"), max_length=3, default="")
+    codeIcaoAirline = models.CharField(_("Icao"), max_length=4, default="")
     nameAirline = models.CharField(
         _("Description eng"), max_length=85, default="", blank=True)
     nameCountry = models.CharField(_("Country"), max_length=85, default="", null=True, blank=True)
