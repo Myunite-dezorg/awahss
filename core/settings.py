@@ -53,7 +53,7 @@ SECRET_KEY = os.getenv(
 
 
 # ALLOWED_HOSTS = ['*',]
-ALLOWED_HOSTS = ['devhub.skyjets.space', 'skyjets.space', '212.118.42.158']
+ALLOWED_HOSTS = ['devhub.skyjets.space', 'skyjets.space', '212.118.42.158', '127.0.0.1']
 
 INTERNAL_IPS = [
     # ...
@@ -146,8 +146,9 @@ MIDDLEWARE = [
 
     'author.middlewares.AuthorDefaultBackendMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-     "corsheaders.middleware.CorsMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -197,15 +198,15 @@ ASGI_APPLICATION = "config.asgi.application"
 # DATABASE_ROUTERS = ('core.dbrouters.MyDBRouter',)
 
 DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600, default="sqlite:///db.sqlite3")
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'awahss_db',
-    #     'USER': 'awahss_db_user',
-    #     'PASSWORD': '19831112',
-    #     'HOST': 'localhost',
-    #     'PORT': '',
-    # }
+    # 'default': dj_database_url.config(conn_max_age=600, default="sqlite:///db.sqlite3")
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'awahss_db2',
+        'USER': 'awahss_db2_usr',
+        'PASSWORD': 'awahss_db2_usr19831112',
+        'HOST': '212.118.42.158',
+        'PORT': '',
+    }
 }
 
 
@@ -375,7 +376,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
- 
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 STATICFILES_DIRS = (
  
 os.path.join(PROJECT_ROOT, 'assets'),

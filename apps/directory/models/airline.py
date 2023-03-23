@@ -9,16 +9,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
-def link_airline_image(instance, **kwargs):
-    if instance.codeIataAirline:
-        filename = f"{instance.ncodeIataAirlineame}.png"
-        filepath = os.path.join(settings.MEDIA_ROOT,
-                                'airlines/square', filename)
-        if os.path.exists(filepath):
-            instance.arl_logo = os.path.join('airlines/square', filename)
-            instance.save()
-
-
 def airline_banner_directory_path(instance, filename):
     codeIataAirline = slugify(instance.codeIataAirline)
     codeIcaoAirline = slugify(instance.codeIcaoAirline)
@@ -49,16 +39,10 @@ class Airline(models.Model):
         _("Country"), max_length=85, default="", null=True, blank=True)
     type = models.CharField(_("Type"), max_length=155, default="", blank=True)
     arl_logo = models.ImageField(
-        upload_to=link_airline_image)
+        upload_to='airlines/square/', blank=True, null=True)
     banner_img = models.ImageField(
         upload_to=airline_banner_directory_path, blank=True, null=True)
 
-    # def link_image(self):
-    #     filenames = os.listdir('media/airlines/square')
-    #     matching_filenames = [fn for fn in filenames if fn.startswith(self.codeIataAirline)]
-    #     if matching_filenames:
-    #         self.arl_logo = matching_filenames[0]
-    #         self.save()
 
     @property
     def thumbnail_preview(self):
@@ -68,14 +52,3 @@ class Airline(models.Model):
 
     def __str__(self):
         return f"{self.codeIataAirline.upper()}"
-
-
-# @receiver(post_save, sender=Airline)
-# def link_airline_arl_logo(sender, instance, created, **kwargs):
-#     if created or instance.codeIataAirline != Airline.objects.get(pk=instance.pk).codeIataAirline:
-#         instance.link_image()
-
-
-@receiver(post_save, sender=Airline)
-def airline_post_save(sender, instance, **kwargs):
-    link_airline_image(instance, **kwargs)
