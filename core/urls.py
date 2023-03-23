@@ -12,7 +12,6 @@ from django.conf.urls.static import static
 from django.views.decorators.csrf import csrf_exempt
 from graphene_django.views import GraphQLView
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
-from wkhtmltopdf.views import PDFTemplateView
 
 from django.views.decorators.csrf import csrf_exempt
 
@@ -63,8 +62,6 @@ urlpatterns = [
     # path('', homepage, name="index"),
     path('admin/dynamic_raw_id/', include('dynamic_raw_id.urls')),
 
-    path('path/', PDFTemplateView.as_view(template_name='my_template.html',
-                                           filename='my_pdf.pdf'), name='pdf'),
     path('', include('apps.services.urls')),
 
     path("select2/", include("django_select2.urls")),
